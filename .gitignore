@@ -1,5 +1,9 @@
+# Локальные файлы проекта
+/Bookstore-System.iml
+
 # Compiled class file
 *.class
+out/
 
 # Log file
 *.log
