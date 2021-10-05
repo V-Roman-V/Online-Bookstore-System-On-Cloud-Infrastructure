@@ -15,8 +15,8 @@ public class Main {
             if (choose == Site.EXIT) break;
             if (choose == Site.RETURN_BOOK) { // returning the book
                 clear();
-                site.provideReturnForm();
                 site.returnABook();
+                site.waitEnter();
                 continue;
             }
             if (choose == Site.SEE_BOOKS)
@@ -35,8 +35,8 @@ public class Main {
                         if (bk == Site.INCORRECT) continue;
                         if (bk == Site.YES) {// Book reservation
                             clear();
-                            site.provideReservationForm();
-                            site.bookABook(ID);
+                            if(site.bookABook(ID))
+                                site.waitEnter();
                         }
                     }
                 }

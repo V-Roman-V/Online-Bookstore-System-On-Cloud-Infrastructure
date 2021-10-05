@@ -30,15 +30,22 @@ public class Site {
         if(isExit(str)) return EXIT;
         if(!isNumber(str)) return INCORRECT;
         int id = Integer.parseInt(str);
-        if(!listOfBooks.checkBookID(id)) return INCORRECT;
+        if(listOfBooks.getBook(id) == null) return INCORRECT;
         return id;
     }
     public void printBookInfo(int bookID){
-
+        Book book = listOfBooks.getBook(bookID);
+        System.out.println("Book: "+book.getTitle());
+        System.out.println("genre: "+book.getTitle());
+        System.out.println("author: "+book.getAuthor());
+        System.out.println("price: "+book.getPrice()+"$");
+    }
+    public void printSmallBookInfo(Book book){
+        System.out.println("Book("+book.getID()+"): "+book.getTitle());
     }
     public int askAboutBooking(int bookID){
         if(listOfBooks.getBook(bookID).isBooked()){
-            System.out.println("This book is already booked.");
+            System.out.println("This book is already reserved.");
             String[] variants = {"exit"};
             return AskUser(variants);
         } else {
@@ -47,26 +54,56 @@ public class Site {
             return AskUser(variants);
         }
     }
-    public void bookABook(int bookID) {
-        System.out.print("Print your name or ");
+    public boolean bookABook(int bookID) {
+        System.out.print("Enter your name or ");
         String[] exit = {"exit"};
         printVariantsList(exit);
         String name = getInput();
-        if (isExit(name)) return;
+        if (isExit(name)) return false;
 
         System.out.println("To book a book, you will need to pay money, do you agree?");
         String[] variants = {"no", "yes", "exit"};
-        if (AskUser(variants) == YES)
-            listOfBooks.getBook(bookID).setBooker(name);
-    }
-    public void provideReturnForm(){}
-    public void provideReservationForm(){}
-    public void returnABook(){}
+        if (AskUser(variants) != YES)return false;
 
+        listOfBooks.getBook(bookID).setBooker(name);
+        System.out.println("The book is successfully reserved.");
+        return true;
+    }
+    public void returnABook(){
+        while(true) {
+            System.out.print("Enter your name or ");
+            String[] exit = {"exit"};
+            printVariantsList(exit);
+            String name = getInput();
+            if (isExit(name)) return;
+
+            System.out.print("Enter the book ID you want to return or");
+            printVariantsList(exit);
+            String id = getInput();
+            if (isExit(id)) return;
+            if (!isNumber(id)) break;
+            Book book = listOfBooks.getBook(Integer.parseInt(id));
+            if(book == null) break;
+            if(!book.getBookerName().equals(name)) break;
+
+            book.releaseBook();
+            System.out.println("You successfully returned the book.");
+            return;
+        }
+        System.out.println("The book is not returned. Incorrect data was entered.");
+    }
 
     public void printBookList(){
         Book[] list = listOfBooks.getBookList();
+        for(Book book:list)
+            printSmallBookInfo(book);
     }
+
+    public void waitEnter(){
+        System.out.println("{Press enter to continue}");
+        String a = getInput();
+    }
+
 
     private int AskUser(String @NotNull [] var){
         printVariantsList(var);
