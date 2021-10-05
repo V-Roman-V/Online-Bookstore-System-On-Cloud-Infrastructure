@@ -1,17 +1,19 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 final class DataBase {
     private static DataBase instance;
     private final ArrayList<Book> list_of_books;
+    HashMap<String, ArrayList<Book> > genre_of_books;
 
-
-    private DataBase(ArrayList<Book> books){
+    private DataBase(ArrayList<Book> books, HashMap<String, ArrayList<Book>> genres){
         this.list_of_books = books;
+        this.genre_of_books = genres;
     }
 
-    public static DataBase getInstance(ArrayList<Book> books){
+    public static DataBase getInstance(ArrayList<Book> books, HashMap<String, ArrayList<Book>> genres){
         if (instance == null){
-            instance = new DataBase(books);
+            instance = new DataBase(books, genres);
         }
         return instance;
     }
@@ -22,9 +24,9 @@ final class DataBase {
     
     public Book getBook(int BookID){
 
-        for (int i = 0; i < list_of_books.size(); ++i){
-            if (list_of_books.get(i).getID() == BookID){
-                return list_of_books.get(i);
+        for (Book list_of_book : list_of_books) {
+            if (list_of_book.getID() == BookID) {
+                return list_of_book;
             }
         }
         return null;
