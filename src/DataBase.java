@@ -1,14 +1,26 @@
-public class DataBase {
-    private static DataBase instance;
-    private DataBase(){}
+import java.util.ArrayList;
 
-    public static DataBase getInstance(){
-        if (instance == null) {
-            instance = new DataBase();
+final class DataBase {
+    private static DataBase instance;
+    private ArrayList<Book> books;
+
+    private DataBase(ArrayList<Book> books){
+        this.books = books;
+    }
+    public static DataBase getInstance(ArrayList<Book> books){
+        if (instance == null){
+            instance = new DataBase(books);
         }
         return instance;
     }
 
-    public Book getBook(Integer bookID){return new Book();}
-    public Book[] getBookList(){return new Book[5];}
+    public Book getBook(int BookID){
+
+        for (int i = 0; i < books.size(); ++i){
+            if (books.get(i).getID() == BookID){
+                return books.get(i);
+            }
+        }
+        return null;
+    }
 }

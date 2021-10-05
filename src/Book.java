@@ -1,10 +1,36 @@
 public class Book {
-    public Book(){}
+    private String title;
+    private int ID;
+    private String author;
+    private String bookerName;
+    private double price;
+    private boolean booked;
 
-    public String getTitle() {return "title";}
-    public String getAuthor(){return "author";}
-    public Double getPrice() {return 1e10;}
-    public Boolean isBooked(){return false;}
-    public Integer getID()   {return 0;}
-    public void setBooker(String name){}
+    public void setBookerName(String bookerName) {
+        this.bookerName = bookerName;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getBookerName() {
+        return bookerName;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public boolean isBooked() {
+        return booked;
+    }
 }
