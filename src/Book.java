@@ -1,4 +1,5 @@
 public class Book {
+    private static int ID_coefficient;
     private String title;
     private int ID;
     private String genre;
@@ -6,6 +7,14 @@ public class Book {
     private String bookerName;
     private double price;
     private boolean booked;
+
+    public Book(String title, String genre, String author, double price) {
+        ID = ++ID_coefficient;
+        this.title = title;
+        this.genre = genre;
+        this.author = author;
+        this.price = price;
+    }
 
     public void releaseBook(){
         this.booked = false;
