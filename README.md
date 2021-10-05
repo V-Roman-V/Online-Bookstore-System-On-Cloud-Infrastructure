@@ -15,7 +15,7 @@ Our team is given the topic for a project with description, our task is to imple
 ● Report - (weight 15 %)  
 
 3. UML class diagram must describe the necessary information to solve the problem.
-4. UFor code, you have to use the Java language, and follow the principles of OOP. Also try to follow the Java code conventions: https://google.github.io/styleguide/javaguide.html.
+4. For code, you have to use the Java language, and follow the principles of OOP. Also try to follow the Java code conventions: https://google.github.io/styleguide/javaguide.html.
 5. The report should describe the code, UML, and contain the reason for selecting a particular pattern. 
 
 
