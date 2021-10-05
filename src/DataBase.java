@@ -20,7 +20,7 @@ final class DataBase {
         return list_of_books;
     }
     
-    public Book getBook(int bookID){
+    public Book getBook(int BookID){
 
         for (int i = 0; i < list_of_books.size(); ++i){
             if (list_of_books.get(i).getID() == BookID){

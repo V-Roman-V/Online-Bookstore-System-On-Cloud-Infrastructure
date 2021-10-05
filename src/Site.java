@@ -69,28 +69,30 @@ public class Site {
         System.out.println("The book is successfully reserved.");
         return true;
     }
-    public void returnABook(){
+    public boolean returnABook(){
         while(true) {
             System.out.print("Enter your name or ");
             String[] exit = {"exit"};
             printVariantsList(exit);
             String name = getInput();
-            if (isExit(name)) return;
+            if (isExit(name)) return false;
 
             System.out.print("Enter the book ID you want to return or");
             printVariantsList(exit);
             String id = getInput();
-            if (isExit(id)) return;
+            if (isExit(id)) return false;
             if (!isNumber(id)) break;
             Book book = listOfBooks.getBook(Integer.parseInt(id));
             if(book == null) break;
+            if(!book.isBooked()) break;
             if(!book.getBookerName().equals(name)) break;
 
             book.releaseBook();
             System.out.println("You successfully returned the book.");
-            return;
+            return true;
         }
         System.out.println("The book is not returned. Incorrect data was entered.");
+        return true;
     }
 
     public void printBookList(){

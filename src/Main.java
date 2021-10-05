@@ -33,8 +33,8 @@ public class Main {
             if (choose == Site.EXIT) break;
             if (choose == Site.RETURN_BOOK) { // returning the book
                 clear();
-                site.returnABook();
-                site.waitEnter();
+                if(site.returnABook())
+                    site.waitEnter();
                 continue;
             }
             if (choose == Site.SEE_BOOKS)
