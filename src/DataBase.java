@@ -2,10 +2,10 @@ import java.util.ArrayList;
 
 final class DataBase {
     private static DataBase instance;
-    private ArrayList<Book> books;
+    private final ArrayList<Book> list_of_books;
 
     private DataBase(ArrayList<Book> books){
-        this.books = books;
+        this.list_of_books = books;
     }
     public static DataBase getInstance(ArrayList<Book> books){
         if (instance == null){
@@ -14,11 +14,15 @@ final class DataBase {
         return instance;
     }
 
+    public ArrayList<Book> getBookList() {
+        return list_of_books;
+    }
+    
     public Book getBook(int BookID){
 
-        for (int i = 0; i < books.size(); ++i){
-            if (books.get(i).getID() == BookID){
-                return books.get(i);
+        for (int i = 0; i < list_of_books.size(); ++i){
+            if (list_of_books.get(i).getID() == BookID){
+                return list_of_books.get(i);
             }
         }
         return null;
