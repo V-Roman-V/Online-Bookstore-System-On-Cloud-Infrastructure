@@ -2,13 +2,13 @@ public class Book {
     private static int ID_coefficient;
     private String title;
     private int ID;
-    private String genre;
+    private Genre genre;
     private String author;
     private String bookerName;
     private double price;
     private boolean booked;
 
-    public Book(String title, String genre, String author, double price) {
+    public Book(String title, Genre genre, String author, double price) {
         ID = ++ID_coefficient;
         this.title = title;
         this.genre = genre;
@@ -37,7 +37,7 @@ public class Book {
         return author;
     }
 
-    public String getGenre() {
+    public Genre getGenre() {
         return genre;
     }
 

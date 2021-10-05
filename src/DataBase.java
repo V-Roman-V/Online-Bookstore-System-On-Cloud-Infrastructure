@@ -4,14 +4,14 @@ import java.util.HashMap;
 final class DataBase {
     private static DataBase instance;
     private final ArrayList<Book> list_of_books;
-    HashMap<String, ArrayList<Book> > genre_of_books;
+    HashMap<Genre, ArrayList<Book> > genre_of_books;
 
-    private DataBase(ArrayList<Book> books, HashMap<String, ArrayList<Book>> genres){
+    private DataBase(ArrayList<Book> books, HashMap<Genre, ArrayList<Book>> genres){
         this.list_of_books = books;
         this.genre_of_books = genres;
     }
 
-    public static DataBase getInstance(ArrayList<Book> books, HashMap<String, ArrayList<Book>> genres){
+    public static DataBase getInstance(ArrayList<Book> books, HashMap<Genre, ArrayList<Book>> genres){
         if (instance == null){
             instance = new DataBase(books, genres);
         }
@@ -20,6 +20,10 @@ final class DataBase {
 
     public ArrayList<Book> getBookList() {
         return list_of_books;
+    }
+
+    public HashMap<Genre, ArrayList<Book>> getGenre_of_books() {
+        return genre_of_books;
     }
     
     public Book getBook(int BookID){
