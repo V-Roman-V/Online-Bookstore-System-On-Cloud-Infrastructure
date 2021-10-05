@@ -1,6 +1,7 @@
 public class Book {
     private String title;
     private int ID;
+    private String genre;
     private String author;
     private String bookerName;
     private double price;
@@ -20,6 +21,10 @@ public class Book {
 
     public String getAuthor() {
         return author;
+    }
+
+    public String getGenre() {
+        return genre;
     }
 
     public String getBookerName() {
