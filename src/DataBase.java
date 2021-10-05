@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 final class DataBase {
@@ -25,6 +26,17 @@ final class DataBase {
     public HashMap<Genre, ArrayList<Book>> getGenre_of_books() {
         return genre_of_books;
     }
+
+
+    ArrayList<Book> sortBooks(Genre genre){
+//        return genre_of_books.values();
+        Collection<ArrayList<Book>> values = genre_of_books.values();
+        for (ArrayList<Book> v : values) {
+            return v;
+        }
+        return null;
+    }
+
     
     public Book getBook(int BookID){
 

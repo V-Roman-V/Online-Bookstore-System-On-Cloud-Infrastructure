@@ -46,8 +46,11 @@ public class Main {
         BookGenre.put(Genre.FICTION, Fictions);
         BookGenre.put(Genre.THRILLER, Thrillers);
         BookGenre.put(Genre.EROTIC, Erotics);
-        System.out.println(BookGenre);
+//        System.out.println(BookGenre);
 
         DataBase db = DataBase.getInstance(BookList, BookGenre);
+
+        ArrayList<Book> lol = db.sortBooks(Genre.HORROR);
+        System.out.println(lol);
     }
 }
