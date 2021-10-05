@@ -7,8 +7,13 @@ public class Book {
     private double price;
     private boolean booked;
 
-    public void setBookerName(String bookerName) {
+    public void releaseBook(){
+        this.booked = false;
+    }
+
+    public void setBooker(String bookerName) {
         this.bookerName = bookerName;
+        this.booked = true;
     }
 
     public String getTitle() {
