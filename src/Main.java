@@ -3,16 +3,15 @@ import java.util.HashMap;
 import java.util.Objects;
 
 
-
 public class Main {
 
-//    static void fillArrayList(ArrayList<Book> BookList, ArrayList<Book> arrayList, String KeyWord) {
-//        for (Book book : BookList) {
-//            if (Objects.equals(book.getGenre(), "KeyWord")) {
-//                arrayList.add(book);
-//            }
-//        }
-//    }
+    static void fillArrayList(ArrayList<Book> BookList, ArrayList<Book> arrayList, String KeyWord) {
+        for (Book book : BookList) {
+            if (Objects.equals(book.getGenre(), KeyWord)) {
+                arrayList.add(book);
+            }
+        }
+    }
 
     public static void main(String[] args) {
 
@@ -34,18 +33,12 @@ public class Main {
         ArrayList<Book> Comedies = new ArrayList<>();
         ArrayList<Book> Detectives = new ArrayList<>();
 
-//        fillArrayList(BookList, Horrors, "Horror");
-//        fillArrayList(BookList, Erotics, "Erotic");
-//        fillArrayList(BookList, Thrillers, "Thriller");
-//        fillArrayList(BookList, Fictions, "Fiction");
-//        fillArrayList(BookList, Comedies, "Comedy");
-//        fillArrayList(BookList, Detectives, "Detective");
-
-        for (Book book : BookList) {
-            if (Objects.equals(book.getGenre(), "Horror")) {
-                Horrors.add(book);
-            }
-        }
+        fillArrayList(BookList, Horrors, "Horror");
+        fillArrayList(BookList, Erotics, "Erotic");
+        fillArrayList(BookList, Thrillers, "Thriller");
+        fillArrayList(BookList, Fictions, "Fiction");
+        fillArrayList(BookList, Comedies, "Comedy");
+        fillArrayList(BookList, Detectives, "Detective");
 
         BookGenre.put("Horror", Horrors);
         BookGenre.put("Detective", Detectives);
