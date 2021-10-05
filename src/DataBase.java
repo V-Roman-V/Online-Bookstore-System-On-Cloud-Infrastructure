@@ -22,9 +22,9 @@ final class DataBase {
     
     public Book getBook(int BookID){
 
-        for (int i = 0; i < list_of_books.size(); ++i){
-            if (list_of_books.get(i).getID() == BookID){
-                return list_of_books.get(i);
+        for (Book list_of_book : list_of_books) {
+            if (list_of_book.getID() == BookID) {
+                return list_of_book;
             }
         }
         return null;

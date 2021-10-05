@@ -1,11 +1,11 @@
 public class Book {
     private static int ID_coefficient;
-    private String title;
-    private int ID;
-    private String genre;
-    private String author;
+    private final String title;
+    private final int ID;
+    private final String genre;
+    private final String author;
     private String bookerName;
-    private double price;
+    private final double price;
     private boolean booked;
 
     public Book(String title, String genre, String author, double price) {

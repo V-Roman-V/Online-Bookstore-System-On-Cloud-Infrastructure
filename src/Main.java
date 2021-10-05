@@ -7,8 +7,7 @@ public class Main {
 //        System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n");
         System.out.print("\n~~~~~~~~~~~~~~~~~~~~~~\n");
     }
-    public static void main(String[] args) {
-
+    private static ArrayList<Book> generateBooks(){
         ArrayList<Book> BookList = new ArrayList<>();
         BookList.add(new Book("Max", "Detective", "Pushkin", 22.2));
         BookList.add(new Book("Nastya", "Horror", "Lenin", 12.22));
@@ -16,15 +15,11 @@ public class Main {
         BookList.add(new Book("Rust", "Fiction", "krug", 85.4));
         BookList.add(new Book("Bong", "Thriller", "King", 24.4));
         BookList.add(new Book("Probstat", "Erotic", "Gorodos", 9999.9));
+        return BookList;
+    }
 
-//        System.out.println(BookList.get(0).getAuthor());
-//        System.out.println(BookList.get(0).getID());
-//        System.out.println(BookList.get(1).getID());
-//        System.out.println(BookList.get(2).getID());
-
-        DataBase db = DataBase.getInstance(BookList);
-
-        Site site = new Site();
+    public static void main(String[] args) {
+        Site site = new Site(generateBooks());
         while (true) { // enter the site
             clear();
             site.enterSite();

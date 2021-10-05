@@ -1,5 +1,6 @@
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -12,7 +13,7 @@ public class Site {
     public static final int NO = 0;
 
     private final DataBase listOfBooks;
-    public Site(){listOfBooks = DataBase.getInstance();}
+    public Site(ArrayList<Book> books){listOfBooks = DataBase.getInstance(books);}
     public void enterSite(){System.out.println("Welcome to the \"Booka\" Bookstore website. \nWhat do you want to do?");}
     public void exitSite(){System.out.println("We will be glad to meet you again in our bookstore  \"Booka\"");}
 
@@ -35,8 +36,9 @@ public class Site {
     }
     public void printBookInfo(int bookID){
         Book book = listOfBooks.getBook(bookID);
+        if( book == null) return;
         System.out.println("Book: "+book.getTitle());
-        System.out.println("genre: "+book.getTitle());
+        System.out.println("genre: "+book.getGenre());
         System.out.println("author: "+book.getAuthor());
         System.out.println("price: "+book.getPrice()+"$");
     }
@@ -66,7 +68,7 @@ public class Site {
         if (AskUser(variants) != YES)return false;
 
         listOfBooks.getBook(bookID).setBooker(name);
-        System.out.println("The book is successfully reserved.");
+        System.out.println("The book is successfully reserved (Please remember book ID = "+bookID+").");
         return true;
     }
     public boolean returnABook(){
@@ -96,7 +98,7 @@ public class Site {
     }
 
     public void printBookList(){
-        Book[] list = listOfBooks.getBookList();
+        ArrayList<Book> list = listOfBooks.getBookList();
         for(Book book:list)
             printSmallBookInfo(book);
     }
