@@ -28,7 +28,8 @@ public class Main {
         BookList.add(new Book("Center", Genre.HORROR, "Osborn", 9.2));
         return BookList;
     }
-    private static HashMap<Genre, ArrayList<Book>> generateBooksGenre(ArrayList<Book> BookList){
+    private static HashMap<Genre, ArrayList<Book>> generateBooksGenre(){
+        ArrayList<Book> BookList = generateBooksArray();
         HashMap<Genre, ArrayList<Book>> BookGenre = new HashMap<>();
         for (Genre gen:Genre.values()){
             ArrayList<Book> arr = new ArrayList<>();
@@ -39,9 +40,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-    	ArrayList<Book> books = generateBooksArray();
-    	HashMap<Genre, ArrayList<Book>> booksGenre = generateBooksGenre(books);
-        Site site = new Site(books, booksGenre);
+        Site site = new Site(generateBooksGenre());
         while (true) { // enter the site
             clear();
             site.enterSite();
