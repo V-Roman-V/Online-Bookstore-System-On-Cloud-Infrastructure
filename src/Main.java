@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Main {
 
-    private static void clear(){
+    private static void clear() {
 //        System.out.print("\033[H\033[2J");
 //        System.out.flush();
 //        System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n");
@@ -17,7 +17,8 @@ public class Main {
             if (Objects.equals(book.getGenre(), KeyWord))
                 arrayList.add(book);
     }
-    private static ArrayList<Book> generateBooksArray(){
+
+    private static ArrayList<Book> generateBooksArray() {
         ArrayList<Book> BookList = new ArrayList<>();
         BookList.add(new Book("Max", Genre.DETECTIVE, "Pushkin", 22.2));
         BookList.add(new Book("Nastya", Genre.HORROR, "Lenin", 12.22));
@@ -28,10 +29,11 @@ public class Main {
         BookList.add(new Book("Center", Genre.HORROR, "Osborn", 9.2));
         return BookList;
     }
-    private static HashMap<Genre, ArrayList<Book>> generateBooksGenre(){
+
+    private static HashMap<Genre, ArrayList<Book>> generateBooksGenre() {
         ArrayList<Book> BookList = generateBooksArray();
         HashMap<Genre, ArrayList<Book>> BookGenre = new HashMap<>();
-        for (Genre gen:Genre.values()){
+        for (Genre gen : Genre.values()) {
             ArrayList<Book> arr = new ArrayList<>();
             fillArrayList(BookList, arr, gen);
             BookGenre.put(gen, arr);
@@ -49,7 +51,7 @@ public class Main {
             if (choose == Site.EXIT) break;
             if (choose == Site.RETURN_BOOK) { // returning the book
                 clear();
-                if(site.returnABook())
+                if (site.returnABook())
                     site.waitEnter();
                 continue;
             }
@@ -69,7 +71,7 @@ public class Main {
                         if (bk == Site.INCORRECT) continue;
                         if (bk == Site.YES) {// Book reservation
                             clear();
-                            if(site.bookABook(ID))
+                            if (site.bookABook(ID))
                                 site.waitEnter();
                         }
                     }

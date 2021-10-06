@@ -9,7 +9,7 @@ public class Book {
     private boolean booked;
     private String bookerName;
 
-    public Book(String title, Genre genre, String author, double price){
+    public Book(String title, Genre genre, String author, double price) {
         ID = ++ID_coefficient;
         this.title = title;
         this.genre = genre;
@@ -17,17 +17,40 @@ public class Book {
         this.price = price;
     }
 
-    public boolean isBooked() {return booked;}
-    public void releaseBook(){this.booked = false;}
+    public boolean isBooked() {
+        return booked;
+    }
+
+    public void releaseBook() {
+        this.booked = false;
+    }
+
     public void setBooker(String bookerName) {
         this.bookerName = bookerName;
         this.booked = true;
     }
 
-    public String getTitle() {return title;}
-    public int getID() {return ID;}
-    public String getAuthor() {return author;}
-    public Genre getGenre() {return genre;}
-    public String getBookerName() {return bookerName;}
-    public double getPrice() {return price;}
+    public String getTitle() {
+        return title;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public String getBookerName() {
+        return bookerName;
+    }
+
+    public double getPrice() {
+        return price;
+    }
 }
