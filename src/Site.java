@@ -1,5 +1,3 @@
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -115,7 +113,7 @@ public class Site {
     }
 
 
-    private int AskUser(String @NotNull [] var){
+    private int AskUser(String [] var){
         printVariantsList(var);
         return calculateInput(getInput(), var);
     }
@@ -126,7 +124,7 @@ public class Site {
     private String getInput(){
         return new Scanner(System.in).nextLine();
     }
-    private void printVariantsList(String @NotNull [] variants){
+    private void printVariantsList(String [] variants){
         StringBuilder out = new StringBuilder("{");
         for(int i = 0; i<variants.length; i++) {
             out.append("(");
@@ -137,7 +135,7 @@ public class Site {
         }
         System.out.println(out);
     }
-    private int calculateInput(@NotNull String str, String[] variants){
+    private int calculateInput(String str, String[] variants){
         if(isExit(str)) return EXIT;
         if((isNumber(str))){
             int hasExit = (Arrays.asList(variants).contains("exit"))? 1 : 0;
