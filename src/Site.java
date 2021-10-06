@@ -123,7 +123,7 @@ public class Site {
 
     public void waitEnter() {
         System.out.println("{Press enter to continue}");
-        String a = getInput();
+        getInput();
     }
 
 

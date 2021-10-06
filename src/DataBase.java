@@ -3,7 +3,7 @@ import java.util.HashMap;
 
 final class DataBase {
     private static DataBase instance;
-    HashMap<Genre, ArrayList<Book>> genre_of_books;
+    final HashMap<Genre, ArrayList<Book>> genre_of_books;
 
     private DataBase(HashMap<Genre, ArrayList<Book>> genres) {
         this.genre_of_books = genres;
