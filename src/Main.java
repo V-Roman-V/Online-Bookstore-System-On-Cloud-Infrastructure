@@ -5,18 +5,17 @@ import java.util.Objects;
 
 public class Main {
 
-    private static void fillArrayList(ArrayList<Book> BookList, ArrayList<Book> arrayList, Genre KeyWord) {
-        for (Book book : BookList) {
-            if (Objects.equals(book.getGenre(), KeyWord)) {
-                arrayList.add(book);
-            }
-        }
-    }
     private static void clear(){
 //        System.out.print("\033[H\033[2J");
 //        System.out.flush();
 //        System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n");
         System.out.print("\n~~~~~~~~~~~~~~~~~~~~~~\n");
+    }
+
+    private static void fillArrayList(ArrayList<Book> BookList, ArrayList<Book> arrayList, Genre KeyWord) {
+        for (Book book : BookList)
+            if (Objects.equals(book.getGenre(), KeyWord))
+                arrayList.add(book);
     }
     private static ArrayList<Book> generateBooksArray(){
         ArrayList<Book> BookList = new ArrayList<>();
@@ -29,35 +28,19 @@ public class Main {
         BookList.add(new Book("Center", Genre.HORROR, "Osborn", 9.2));
         return BookList;
     }
-    private static ArrayList<Book> generateBooksGenre(){
+    private static HashMap<Genre, ArrayList<Book>> generateBooksGenre(ArrayList<Book> BookList){
         HashMap<Genre, ArrayList<Book>> BookGenre = new HashMap<>();
-        ArrayList<Book> Horrors = new ArrayList<>();
-        ArrayList<Book> Erotics = new ArrayList<>();
-        ArrayList<Book> Thrillers = new ArrayList<>();
-        ArrayList<Book> Fictions = new ArrayList<>();
-        ArrayList<Book> Comedies = new ArrayList<>();
-        ArrayList<Book> Detectives = new ArrayList<>();
-
-        fillArrayList(BookList, Horrors, Genre.HORROR);
-        fillArrayList(BookList, Erotics, Genre.EROTIC);
-        fillArrayList(BookList, Thrillers, Genre.THRILLER);
-        fillArrayList(BookList, Fictions, Genre.FICTION);
-        fillArrayList(BookList, Comedies, Genre.COMEDY);
-        fillArrayList(BookList, Detectives, Genre.DETECTIVE);
-
-
-        BookGenre.put(Genre.HORROR, Horrors);
-        BookGenre.put(Genre.DETECTIVE, Detectives);
-        BookGenre.put(Genre.COMEDY, Comedies);
-        BookGenre.put(Genre.FICTION, Fictions);
-        BookGenre.put(Genre.THRILLER, Thrillers);
-        BookGenre.put(Genre.EROTIC, Erotics);
+        for (Genre gen:Genre.values()){
+            ArrayList<Book> arr = new ArrayList<>();
+            fillArrayList(BookList, arr, gen);
+            BookGenre.put(gen, arr);
+        }
         return BookGenre;
     }
 
     public static void main(String[] args) {
-    	ArrayList<Book> books = generateBooks();
-    	HashMap<Genre, ArrayList<Book>> booksGenre = generateBooksGenre(booksGenre);
+    	ArrayList<Book> books = generateBooksArray();
+    	HashMap<Genre, ArrayList<Book>> booksGenre = generateBooksGenre(books);
         Site site = new Site(books, booksGenre);
         while (true) { // enter the site
             clear();

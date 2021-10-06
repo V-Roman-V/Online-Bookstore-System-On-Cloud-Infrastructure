@@ -2,6 +2,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Site {
@@ -13,7 +14,7 @@ public class Site {
     public static final int NO = 0;
 
     private final DataBase listOfBooks;
-    public Site(ArrayList<Book> books){listOfBooks = DataBase.getInstance(books);}
+    public Site(ArrayList<Book> books, HashMap<Genre, ArrayList<Book>> genres){listOfBooks = DataBase.getInstance(books, genres);}
     public void enterSite(){System.out.println("Welcome to the \"Booka\" Bookstore website. \nWhat do you want to do?");}
     public void exitSite(){System.out.println("We will be glad to meet you again in our bookstore  \"Booka\"");}
 
