@@ -23,7 +23,7 @@ final class DataBase {
         return list_of_books;
     }
 
-    public HashMap<Genre, ArrayList<Book>> getGenre_of_books() {
+    public HashMap<Genre, ArrayList<Book>> getBooksGenre() {
         return genre_of_books;
     }
 

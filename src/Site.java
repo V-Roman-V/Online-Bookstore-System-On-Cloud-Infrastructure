@@ -44,7 +44,7 @@ public class Site {
         System.out.println("price: "+book.getPrice()+"$");
     }
     public void printSmallBookInfo(Book book){
-        System.out.println("Book("+book.getID()+"): "+book.getTitle());
+        System.out.println("\t"+book.getTitle()+" {"+book.getAuthor()+"} id=" + book.getID());
     }
     public int askAboutBooking(int bookID){
         if(listOfBooks.getBook(bookID).isBooked()){
@@ -99,9 +99,14 @@ public class Site {
     }
 
     public void printBookList(){
-        ArrayList<Book> list = listOfBooks.getBookList();
-        for(Book book:list)
-            printSmallBookInfo(book);
+        HashMap<Genre, ArrayList<Book>> list = listOfBooks.getBooksGenre();
+        for(Genre genre: Genre.values()) {
+            System.out.println(genre.toString()+":");
+            for(Book book: list.get(genre))
+                if(book != null)
+                    printSmallBookInfo(book);
+            System.out.println();
+        }
     }
 
     public void waitEnter(){
