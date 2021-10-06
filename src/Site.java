@@ -2,6 +2,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Site {
@@ -13,7 +14,7 @@ public class Site {
     public static final int NO = 0;
 
     private final DataBase listOfBooks;
-    public Site(ArrayList<Book> books){listOfBooks = DataBase.getInstance(books);}
+    public Site(HashMap<Genre, ArrayList<Book>> genres){listOfBooks = DataBase.getInstance(genres);}
     public void enterSite(){System.out.println("Welcome to the \"Booka\" Bookstore website. \nWhat do you want to do?");}
     public void exitSite(){System.out.println("We will be glad to meet you again in our bookstore  \"Booka\"");}
 
@@ -43,7 +44,7 @@ public class Site {
         System.out.println("price: "+book.getPrice()+"$");
     }
     public void printSmallBookInfo(Book book){
-        System.out.println("Book("+book.getID()+"): "+book.getTitle());
+        System.out.println("\t"+book.getTitle()+" {"+book.getAuthor()+"} id=" + book.getID());
     }
     public int askAboutBooking(int bookID){
         if(listOfBooks.getBook(bookID).isBooked()){
@@ -98,9 +99,14 @@ public class Site {
     }
 
     public void printBookList(){
-        ArrayList<Book> list = listOfBooks.getBookList();
-        for(Book book:list)
-            printSmallBookInfo(book);
+        HashMap<Genre, ArrayList<Book>> list = listOfBooks.getBooksGenre();
+        for(Genre genre: Genre.values()) {
+            System.out.println(genre.toString()+":");
+            for(Book book: list.get(genre))
+                if(book != null)
+                    printSmallBookInfo(book);
+            System.out.println();
+        }
     }
 
     public void waitEnter(){
@@ -118,13 +124,17 @@ public class Site {
         return (str.equals("-") || str.equals("exit"));
     }
     private String getInput(){
-        Scanner sc=new Scanner(System.in);
-        return sc.nextLine();
+        return new Scanner(System.in).nextLine();
     }
     private void printVariantsList(String @NotNull [] variants){
         StringBuilder out = new StringBuilder("{");
-        for(int i = 0; i<variants.length; i++)
-            out.append("(").append(variants[i].equals("exit") ? "-" : Integer.toString(i)).append(")").append(variants[i]).append((i + 1 == variants.length) ? "}" : "; ");
+        for(int i = 0; i<variants.length; i++) {
+            out.append("(");
+            out.append(variants[i].equals("exit") ? "-" : Integer.toString(i));
+            out.append(")");
+            out.append(variants[i]);
+            out.append((i + 1 == variants.length) ? "}" : "; ");
+        }
         System.out.println(out);
     }
     private int calculateInput(@NotNull String str, String[] variants){
