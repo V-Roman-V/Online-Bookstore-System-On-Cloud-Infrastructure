@@ -51,8 +51,7 @@ public class Main {
             if (choose == Site.EXIT) break;
             if (choose == Site.RETURN_BOOK) { // returning the book
                 clear();
-                if (site.returnABook())
-                    site.waitEnter();
+                site.returnABook();
                 continue;
             }
             if (choose == Site.SEE_BOOKS) { // Book previews
@@ -60,7 +59,7 @@ public class Main {
                 while (true) {
                     clear();
                     site.printBookList(gen);
-                    Site.Pair<Genre, Integer> data = site.chooseABook(gen);
+                    Site.Pair<Genre, Integer> data = site.chooseABook();
                     gen = data.first;
                     int ID = data.second;
 
@@ -76,8 +75,7 @@ public class Main {
                         if (bk == Site.INCORRECT) continue;
                         if (bk == Site.YES) {// Book reservation
                             clear();
-                            if (site.bookABook(ID))
-                                site.waitEnter();
+                            site.bookABook(ID);
                         }
                     }
                 }

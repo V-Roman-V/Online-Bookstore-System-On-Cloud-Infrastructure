@@ -1,9 +1,12 @@
 import java.util.*;
 
 /**
- *
+ * A class that provides methods for the user to interact with the site
  */
 public class Site {
+    /**
+     * Constants for user responses
+     */
     public static final int INCORRECT = -2;
     public static final int EXIT = -1;
     public static final int RETURN_BOOK = 0;
@@ -12,31 +15,38 @@ public class Site {
     public static final int YES = 1;
     public static final int NO = 0;
 
+    /**
+     * Database storing books
+     */
     private final DataBase listOfBooks;
 
     /**
-     * @param genres
+     * Creates a site using the genres database
+     *
+     * @param genres database storing an array of books by genre
      */
     public Site(HashMap<Genre, ArrayList<Book>> genres) {
         listOfBooks = DataBase.getInstance(genres);
     }
 
     /**
-     *
+     * Prints the welcome text
      */
     public void enterSite() {
         System.out.println("Welcome to the \"Booka\" Bookstore website. \nWhat do you want to do?");
     }
 
     /**
-     *
+     * Prints the goodbye text
      */
     public void exitSite() {
         System.out.println("We will be glad to meet you again in our bookstore  \"Booka\"");
     }
 
     /**
-     * @return
+     * Asks the user for further action
+     *
+     * @return user response {INCORRECT, EXIT, RETURN_BOOK, SEE_BOOKS}
      */
     public int startMenu() {
         String[] variants = {"return_book", "see_books", "exit"};
@@ -44,9 +54,11 @@ public class Site {
     }
 
     /**
-     * @return
+     * Asks the user to select books
+     *
+     * @return the user's response as a pair( first: genre; second: user response {id, INCORRECT, EXIT} )
      */
-    public Pair<Genre, Integer> chooseABook(Genre gen) {
+    public Pair<Genre, Integer> chooseABook() {
         System.out.print("Choose Genre or book by ID ");
         String[] exit = {"exit"};
         printVariantsList(exit);
@@ -63,7 +75,9 @@ public class Site {
     }
 
     /**
-     * @param bookID
+     * Prints complete information about the book
+     *
+     * @param bookID ID of the book to print
      */
     public void printBookInfo(int bookID) {
         Book book = listOfBooks.getBook(bookID);
@@ -75,7 +89,9 @@ public class Site {
     }
 
     /**
-     * @param book
+     * Print short information about the book
+     *
+     * @param book Book to print
      */
     public void printSmallBookInfo(Book book) {
         if (book == null) return;
@@ -83,24 +99,27 @@ public class Site {
     }
 
     /**
-     * @param bookID
-     * @return
+     * Asks the user if he wants to reserve the book
+     *
+     * @param bookID ID of selected book
+     * @return user response {NO, YES, EXIT}
      */
     public int askAboutBooking(int bookID) {
         if (listOfBooks.getBook(bookID).isBooked()) {
             System.out.println("This book is already reserved.");
             String[] variants = {"exit"};
             return AskUser(variants);
-        } else {
-            System.out.println("Want to reserve a book?");
-            String[] variants = {"no", "yes", "exit"};
-            return AskUser(variants);
         }
+        System.out.println("Want to reserve a book?");
+        String[] variants = {"no", "yes", "exit"};
+        return AskUser(variants);
     }
 
     /**
-     * @param bookID
-     * @return
+     * Provides a form for book reservations
+     *
+     * @param bookID ID of selected book
+     * @return was the book reserved
      */
     public boolean bookABook(int bookID) {
         System.out.print("Enter your name ");
@@ -115,11 +134,14 @@ public class Site {
 
         listOfBooks.getBook(bookID).setBooker(name);
         System.out.println("The book is successfully reserved (Please remember book ID = " + bookID + ").");
+        waitEnter();
         return true;
     }
 
     /**
-     * @return
+     * Provides a form for book returning
+     *
+     * @return was the book returned
      */
     public boolean returnABook() {
         while (true) {
@@ -141,14 +163,18 @@ public class Site {
 
             book.releaseBook();
             System.out.println("You successfully returned the book.");
+            waitEnter();
             return true;
         }
         System.out.println("The book is not returned. Incorrect data was entered.");
-        return true;
+        waitEnter();
+        return false;
     }
 
     /**
+     * Prints a list of books
      *
+     * @param gen particular genre to print
      */
     public void printBookList(Genre gen) {
         if (gen != null) {
@@ -159,6 +185,11 @@ public class Site {
             printGenre(genre);
     }
 
+    /**
+     * Prints a list of books of one genre
+     *
+     * @param genre particular genre to print
+     */
     private void printGenre(Genre genre) {
         System.out.println(genre.toString() + ":");
         for (Book book : listOfBooks.getBooksGenre().get(genre))
@@ -167,26 +198,34 @@ public class Site {
     }
 
     /**
-     *
+     * Waiting for the Enter key to be pressed
      */
     public void waitEnter() {
         System.out.println("{Press enter to continue}");
         getInput();
     }
 
+    /**
+     * Prints out a list of variants to the user and returns the answer
+     *
+     * @param var list of variants
+     * @return user response
+     */
     private int AskUser(String[] var) {
         printVariantsList(var);
         return calculateInput(getInput(), var);
     }
 
-    private boolean isExit(String str) {
-        return (str.equals("-") || str.equals("exit"));
-    }
-
+    /**
+     * @return the text printed by the user
+     */
     private String getInput() {
         return new Scanner(System.in).nextLine();
     }
 
+    /**
+     * Prints out a list of variants to the user
+     */
     private void printVariantsList(String[] variants) {
         StringBuilder out = new StringBuilder("{");
         for (int i = 0; i < variants.length; i++) {
@@ -199,6 +238,13 @@ public class Site {
         System.out.println(out);
     }
 
+    /**
+     * Calculates the response received from the user
+     *
+     * @param str      user text
+     * @param variants list of variants
+     * @return user response
+     */
     private int calculateInput(String str, String[] variants) {
         if (isExit(str)) return EXIT;
         if ((isNumber(str))) {
@@ -208,11 +254,25 @@ public class Site {
             return i;
         }
         for (int i = 0; i < variants.length; i++)
-            if (str.equals(variants[i]))
+            if (str.equalsIgnoreCase(variants[i]))
                 return i;
         return INCORRECT;
     }
 
+    /**
+     * Checks if the string is the word 'exit' or '-'
+     *
+     * @param str string for checking
+     */
+    private boolean isExit(String str) {
+        return (str.equals("-") || str.equalsIgnoreCase("exit"));
+    }
+
+    /**
+     * Checks if the string is a number
+     *
+     * @param str string for checking
+     */
     private static boolean isNumber(String str) {
         try {
             Integer.parseInt(str);
@@ -222,7 +282,10 @@ public class Site {
         }
     }
 
-    public class Pair<T, T1> {
+    /**
+     * A helper class for returning multiple values from a function
+     */
+    public static class Pair<T, T1> {
         public T first;
         public T1 second;
 
