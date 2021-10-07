@@ -49,7 +49,7 @@ public class Site {
      * @return user response {INCORRECT, EXIT, RETURN_BOOK, SEE_BOOKS}
      */
     public int startMenu() {
-        String[] variants = {"return_book", "see_books", "exit"};
+        String[] variants = {"return book", "see books", "exit"};
         return AskUser(variants);
     }
 
