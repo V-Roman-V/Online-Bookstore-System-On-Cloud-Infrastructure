@@ -11,14 +11,14 @@ final class DataBase {
     private static DataBase instance;
 
     /**
-     * A Hashmap which stores an array of book class objects by genre
+     * A Hashmap which stores an array of books by genre
      */
     final HashMap<Genre, ArrayList<Book>> genre_of_books;
 
     /**
      * Creates a database using the genres hashmap
      *
-     * @param genres hashmap storing an array of book class objects by genre
+     * @param genres hashmap storing an array of book by genre
      */
     private DataBase(HashMap<Genre, ArrayList<Book>> genres) {
         this.genre_of_books = genres;
@@ -36,7 +36,7 @@ final class DataBase {
     }
 
     /**
-     * @return of genre_of_books hashmap
+     * @return genre_of_books hashmap
      */
     public HashMap<Genre, ArrayList<Book>> getBooksGenre() {
         return genre_of_books;
@@ -44,7 +44,7 @@ final class DataBase {
 
     /**
      * @param BookID
-     * @return book class object stored in genre_of_books hashmap
+     * @return book stored in genre_of_books hashmap
      * and which BookID converges with the parameter
      */
     public Book getBook(int BookID) {
