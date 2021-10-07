@@ -4,5 +4,8 @@ public enum Genre {
     COMEDY,
     FICTION,
     THRILLER,
-    EROTIC
+    EROTIC,
+    DRAMA,
+    PSYCHOLOGICAL,
+    ROMANCE
 }
