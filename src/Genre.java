@@ -7,5 +7,6 @@ public enum Genre {
     EROTIC,
     DRAMA,
     PSYCHOLOGICAL,
-    ROMANCE
+    ROMANCE,
+    ECCHI
 }

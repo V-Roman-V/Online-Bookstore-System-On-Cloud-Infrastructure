@@ -35,7 +35,7 @@ public class Main {
         BookList.add(new Book("I'm A Spider, So What? (LN)", Genre.DRAMA, "BABA Okina", 61.5));
         BookList.add(new Book("Jobless Reincarnation: I Will Seriously Try If I Go to Another World (WN)", Genre.COMEDY, "Rifujin na Magonote", 37.6));
         //
-        BookList.add(new Book("No Game No Life (LN)", Genre.EROTIC, "KAMIYA Yuu", 7.5));
+        BookList.add(new Book("No Game No Life (LN)", Genre.ECCHI, "KAMIYA Yuu", 7.5));
         BookList.add(new Book("How to forget C++, for dummies", Genre.PSYCHOLOGICAL, "Real life", -0.01));
         BookList.add(new Book("Spice and Wolf", Genre.DRAMA, "Isuna Hasekura", 56.7));
         BookList.add(new Book("Danganronpa/Zero (N)", Genre.DETECTIVE, "Kazutaka Kodaka", 3.3));
