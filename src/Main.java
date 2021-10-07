@@ -55,12 +55,17 @@ public class Main {
                     site.waitEnter();
                 continue;
             }
-            if (choose == Site.SEE_BOOKS)
-                while (true) { // Book previews
+            if (choose == Site.SEE_BOOKS) { // Book previews
+                Genre gen = null;
+                while (true) {
                     clear();
-                    site.printBookList();
-                    int ID = site.chooseABook();
+                    site.printBookList(gen);
+                    Site.Pair<Genre, Integer> data = site.chooseABook(gen);
+                    gen = data.first;
+                    int ID = data.second;
+
                     if (ID == Site.EXIT) break;
+                    if (ID == Site.CHOOSE_GENRE) continue;
                     if (ID == Site.INCORRECT) continue;
                     while (true) { // Viewing a particular book
                         clear();
@@ -76,6 +81,7 @@ public class Main {
                         }
                     }
                 }
+            }
         }
         clear();
         site.exitSite();

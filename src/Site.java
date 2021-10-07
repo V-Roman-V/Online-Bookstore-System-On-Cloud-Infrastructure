@@ -1,48 +1,70 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
+/**
+ *
+ */
 public class Site {
     public static final int INCORRECT = -2;
     public static final int EXIT = -1;
     public static final int RETURN_BOOK = 0;
     public static final int SEE_BOOKS = 1;
+    public static final int CHOOSE_GENRE = 2;
     public static final int YES = 1;
     public static final int NO = 0;
 
     private final DataBase listOfBooks;
 
+    /**
+     * @param genres
+     */
     public Site(HashMap<Genre, ArrayList<Book>> genres) {
         listOfBooks = DataBase.getInstance(genres);
     }
 
+    /**
+     *
+     */
     public void enterSite() {
         System.out.println("Welcome to the \"Booka\" Bookstore website. \nWhat do you want to do?");
     }
 
+    /**
+     *
+     */
     public void exitSite() {
         System.out.println("We will be glad to meet you again in our bookstore  \"Booka\"");
     }
 
+    /**
+     * @return
+     */
     public int startMenu() {
         String[] variants = {"return_book", "see_books", "exit"};
         return AskUser(variants);
     }
 
-    public int chooseABook() {
-        System.out.print("Choose bookID or ");
+    /**
+     * @return
+     */
+    public Pair<Genre, Integer> chooseABook(Genre gen) {
+        System.out.print("Choose Genre or book by ID ");
         String[] exit = {"exit"};
         printVariantsList(exit);
 
         String str = getInput();
-        if (isExit(str)) return EXIT;
-        if (!isNumber(str)) return INCORRECT;
+        if (isExit(str)) return new Pair<>(null, EXIT);
+        for (Genre genre : Genre.values())
+            if (str.equalsIgnoreCase(genre.toString()))
+                return new Pair<>(genre, CHOOSE_GENRE);
+        if (!isNumber(str)) return new Pair<>(null, INCORRECT);
         int id = Integer.parseInt(str);
-        if (listOfBooks.getBook(id) == null) return INCORRECT;
-        return id;
+        if (listOfBooks.getBook(id) == null) return new Pair<>(null, INCORRECT);
+        return new Pair<>(null, id);
     }
 
+    /**
+     * @param bookID
+     */
     public void printBookInfo(int bookID) {
         Book book = listOfBooks.getBook(bookID);
         if (book == null) return;
@@ -52,10 +74,18 @@ public class Site {
         System.out.println("price: " + book.getPrice() + "$");
     }
 
+    /**
+     * @param book
+     */
     public void printSmallBookInfo(Book book) {
+        if (book == null) return;
         System.out.println("\t" + book.getTitle() + " {" + book.getAuthor() + "} id=" + book.getID());
     }
 
+    /**
+     * @param bookID
+     * @return
+     */
     public int askAboutBooking(int bookID) {
         if (listOfBooks.getBook(bookID).isBooked()) {
             System.out.println("This book is already reserved.");
@@ -68,8 +98,12 @@ public class Site {
         }
     }
 
+    /**
+     * @param bookID
+     * @return
+     */
     public boolean bookABook(int bookID) {
-        System.out.print("Enter your name or ");
+        System.out.print("Enter your name ");
         String[] exit = {"exit"};
         printVariantsList(exit);
         String name = getInput();
@@ -84,9 +118,12 @@ public class Site {
         return true;
     }
 
+    /**
+     * @return
+     */
     public boolean returnABook() {
         while (true) {
-            System.out.print("Enter your name or ");
+            System.out.print("Enter your name ");
             String[] exit = {"exit"};
             printVariantsList(exit);
             String name = getInput();
@@ -110,22 +147,32 @@ public class Site {
         return true;
     }
 
-    public void printBookList() {
-        HashMap<Genre, ArrayList<Book>> list = listOfBooks.getBooksGenre();
-        for (Genre genre : Genre.values()) {
-            System.out.println(genre.toString() + ":");
-            for (Book book : list.get(genre))
-                if (book != null)
-                    printSmallBookInfo(book);
-            System.out.println();
+    /**
+     *
+     */
+    public void printBookList(Genre gen) {
+        if (gen != null) {
+            printGenre(gen);
+            return;
         }
+        for (Genre genre : Genre.values())
+            printGenre(genre);
     }
 
+    private void printGenre(Genre genre) {
+        System.out.println(genre.toString() + ":");
+        for (Book book : listOfBooks.getBooksGenre().get(genre))
+            printSmallBookInfo(book);
+        System.out.println();
+    }
+
+    /**
+     *
+     */
     public void waitEnter() {
         System.out.println("{Press enter to continue}");
         getInput();
     }
-
 
     private int AskUser(String[] var) {
         printVariantsList(var);
@@ -172,6 +219,16 @@ public class Site {
             return true;
         } catch (NumberFormatException e) {
             return false;
+        }
+    }
+
+    public class Pair<T, T1> {
+        public T first;
+        public T1 second;
+
+        public Pair(T f, T1 s) {
+            first = f;
+            second = s;
         }
     }
 }
