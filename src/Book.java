@@ -44,9 +44,8 @@ public class Book {
     }
 
     /**
-     * @param bookerName
-     * Makes book booked and set bookerName
-     * which converges with parameter
+     * @param bookerName Makes book booked and set bookerName which converges with
+     *                   parameter
      */
     public void setBooker(String bookerName) {
         this.bookerName = bookerName;

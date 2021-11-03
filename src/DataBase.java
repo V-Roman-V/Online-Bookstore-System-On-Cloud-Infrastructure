@@ -25,9 +25,8 @@ final class DataBase {
     }
 
     /**
-     * @param genres hashmap
-     * An alternative to the constructor and
-     * is the access point to an instance of Database class.
+     * @param genres hashmap An alternative to the constructor and is the access
+     *               point to an instance of Database class.
      */
     public static DataBase getInstance(HashMap<Genre, ArrayList<Book>> genres) {
         if (instance == null)
@@ -44,8 +43,8 @@ final class DataBase {
 
     /**
      * @param BookID
-     * @return book stored in genre_of_books hashmap
-     * and which BookID converges with the parameter
+     * @return book stored in genre_of_books hashmap and which BookID converges with
+     *         the parameter
      */
     public Book getBook(int BookID) {
         for (ArrayList<Book> v : genre_of_books.values())
