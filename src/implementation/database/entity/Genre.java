@@ -1,6 +1,9 @@
-package Implementation.database.object;
+package implementation.database.entity;
+
+import pureooabstraction.database.EntityInterface;
+
 //    HORROR, DETECTIVE, COMEDY, FICTION, THRILLER, EROTIC, DRAMA, PSYCHOLOGICAL, ROMANCE, ECCHI
-public class Genre {
+public class Genre implements EntityInterface {
     // Integer author_id;
     public String name;
     public String discription;

@@ -1,8 +1,10 @@
-package Implementation.database.object;
+package implementation.database.entity;
+
+import pureooabstraction.database.EntityInterface;
 
 import java.sql.Date;
 
-public class Author {
+public class Author implements EntityInterface {
 
     // fields
     // Integer author_id;

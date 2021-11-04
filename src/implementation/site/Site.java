@@ -1,8 +1,8 @@
-package Implementation.site;
+package implementation.site;
 
-import Implementation.database.object.Book;
-import Implementation.database.Library;
-import Implementation.database.object.Genre;
+import implementation.database.entity.Book;
+import implementation.database.Library;
+import implementation.database.entity.Genre;
 import pureooabstraction.site.SiteInterface;
 
 import java.util.*;
@@ -11,17 +11,6 @@ import java.util.*;
  * A class that provides methods for the user to interact with the site
  */
 public class Site implements SiteInterface {
-    /**
-     * Constants for user responses
-     */
-    public static final int INCORRECT = -2;
-    public static final int EXIT = -1;
-    public static final int RETURN_BOOK = 0;
-    public static final int SEE_BOOKS = 1;
-    public static final int CHOOSE_GENRE = 2;
-    public static final int YES = 1;
-    public static final int NO = 0;
-
     /**
      * Database storing books
      */
@@ -36,36 +25,19 @@ public class Site implements SiteInterface {
         listOfBooks = Library.getInstance(genres);
     }
 
-    /**
-     * Prints the welcome text
-     */
     public void enterSite() {
         System.out.println("Welcome to the \"Booka\" Bookstore website. \nWhat do you want to do?");
     }
 
-    /**
-     * Prints the goodbye text
-     */
     public void exitSite() {
         System.out.println("We will be glad to meet you again in our bookstore  \"Booka\"");
     }
 
-    /**
-     * Asks the user for further action
-     *
-     * @return user response {INCORRECT, EXIT, RETURN_BOOK, SEE_BOOKS}
-     */
     public int startMenu() {
         String[] variants = { "return book", "see books", "exit" };
         return AskUser(variants);
     }
 
-    /**
-     * Asks the user to select books
-     *
-     * @return the user's response as a pair( first: genre; second: user response
-     *         {id, INCORRECT, EXIT} )
-     */
     public Pair<Genre, Integer> chooseABook() {
         System.out.print("Choose Implementation.database.object.Genre or book by ID ");
         String[] exit = { "exit" };
@@ -85,11 +57,6 @@ public class Site implements SiteInterface {
         return new Pair<>(null, id);
     }
 
-    /**
-     * Prints complete information about the book
-     *
-     * @param bookID ID of the book to print
-     */
     public void printBookInfo(int bookID) {
         Book book = listOfBooks.getBook(bookID);
         if (book == null)
@@ -100,23 +67,12 @@ public class Site implements SiteInterface {
         System.out.println("price: " + book.getPrice() + "$");
     }
 
-    /**
-     * Print short information about the book
-     *
-     * @param book Implementation.database.object.Book to print
-     */
     public void printSmallBookInfo(Book book) {
         if (book == null)
             return;
         System.out.println("\t" + book.getTitle() + " {" + book.getAuthor() + "} id=" + book.getID());
     }
 
-    /**
-     * Asks the user if he wants to reserve the book
-     *
-     * @param bookID ID of selected book
-     * @return user response {NO, YES, EXIT}
-     */
     public int askAboutBooking(int bookID) {
         if (listOfBooks.getBook(bookID).isBooked()) {
             System.out.println("This book is already reserved.");
@@ -128,12 +84,6 @@ public class Site implements SiteInterface {
         return AskUser(variants);
     }
 
-    /**
-     * Provides a form for book reservations
-     *
-     * @param bookID ID of selected book
-     * @return was the book reserved
-     */
     public boolean bookABook(int bookID) {
         System.out.print("Enter your name ");
         String[] exit = { "exit" };
@@ -153,11 +103,6 @@ public class Site implements SiteInterface {
         return true;
     }
 
-    /**
-     * Provides a form for book returning
-     *
-     * @return was the book returned
-     */
     public boolean returnABook() {
         while (true) {
             System.out.print("Enter your name ");
@@ -192,11 +137,6 @@ public class Site implements SiteInterface {
         return false;
     }
 
-    /**
-     * Prints a list of books
-     *
-     * @param gen particular genre to print
-     */
     public void printBookList(Genre gen) {
         if (gen != null) {
             printGenre(gen);
@@ -218,9 +158,6 @@ public class Site implements SiteInterface {
         System.out.println();
     }
 
-    /**
-     * Waiting for the Enter key to be pressed
-     */
     public void waitEnter() {
         System.out.println("{Press enter to continue}");
         getInput();

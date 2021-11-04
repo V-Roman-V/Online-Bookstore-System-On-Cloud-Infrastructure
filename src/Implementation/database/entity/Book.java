@@ -1,9 +1,11 @@
-package Implementation.database.object;
+package implementation.database.entity;
+
+import pureooabstraction.database.EntityInterface;
 
 /**
  * A class representing Implementation.database.object.Book
  */
-public class Book {
+public class Book implements EntityInterface {
     /**
      * Coefficient which makes id unique for each book
      */

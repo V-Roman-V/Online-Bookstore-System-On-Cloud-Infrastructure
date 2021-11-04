@@ -1,7 +1,7 @@
-package Implementation.database;
+package implementation.database;
 
-import Implementation.database.object.Book;
-import Implementation.database.object.Genre;
+import implementation.database.entity.Book;
+import implementation.database.entity.Genre;
 
 import pureooabstraction.database.*;
 

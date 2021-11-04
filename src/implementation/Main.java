@@ -1,8 +1,8 @@
-package Implementation;
+package implementation;
 
-import Implementation.database.object.Book;
-import Implementation.database.object.Genre;
-import Implementation.site.Site;
+import implementation.database.entity.Book;
+import implementation.database.entity.Genre;
+import implementation.site.Site;
 
 import java.util.ArrayList;
 import java.util.HashMap;
