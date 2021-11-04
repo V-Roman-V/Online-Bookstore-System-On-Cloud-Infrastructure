@@ -1,4 +1,4 @@
-package abstraction.database;
+package abstraction.database.entity;
 
 public interface EntityInterface {
     /**

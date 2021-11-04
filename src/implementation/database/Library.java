@@ -1,9 +1,11 @@
 package implementation.database;
 
+import implementation.database.entity.Author;
 import implementation.database.entity.Book;
 import implementation.database.entity.Genre;
 
 import abstraction.database.*;
+import implementation.database.entity.Reader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,17 +20,25 @@ public final class Library implements DataBaseInterface{
     private static Library instance;
 
     /**
-     * A Hashmap which stores an array of books by genre
+     * A Hashmap which stores a databases
      */
-    final HashMap<Genre, ArrayList<Book>> genre_of_books;
+    final HashMap<String, Book> book_table;
+    final HashMap<String, Author> author_table;
+    final HashMap<String, Reader> reader_table;
+    final HashMap<String, Genre> genre_table;
+    final HashMap<String, Order> order_table;
 
     /**
-     * Creates a Implementation.database using the genres hashmap
+     * Creates a database using the genres hashmap
      *
      * @param genres hashmap storing an array of book by genre
      */
-    private Library(HashMap<Genre, ArrayList<Book>> genres) {
-        this.genre_of_books = genres;
+    private Library() {
+        book_table   = new HashMap<String, Book>();
+        author_table = new HashMap<String, Author>();
+        reader_table = new HashMap<String, Reader>();
+        genre_table  = new HashMap<String, Genre>();
+        order_table  = new HashMap<String, Order>();
     }
 
     /**

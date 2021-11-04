@@ -1,6 +1,6 @@
 package implementation.database.entity;
 
-import abstraction.database.EntityInterface;
+import abstraction.database.entity.EntityInterface;
 
 // Genre example: HORROR, DETECTIVE, COMEDY, FICTION, THRILLER, EROTIC, DRAMA, PSYCHOLOGICAL, ROMANCE, ECCHI
 

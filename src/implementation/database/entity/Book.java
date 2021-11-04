@@ -1,6 +1,6 @@
 package implementation.database.entity;
 
-import abstraction.database.EntityInterface;
+import abstraction.database.entity.EntityInterface;
 
 /**
  * A class representing Implementation.database.object.Book
@@ -20,8 +20,6 @@ public class Book implements EntityInterface {
     public Genre genre;
     public final double price;
     public final int ID;
-    public boolean booked;
-    public String bookerName;
 
     /**
      * Creates a book
