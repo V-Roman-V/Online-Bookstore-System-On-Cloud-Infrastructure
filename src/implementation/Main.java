@@ -1,14 +1,19 @@
+package implementation;
+
+import implementation.database.entity.Book;
+import implementation.database.entity.Genre;
+import implementation.site.Site;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-
 public class Main {
 
     private static void clear() {
-//        System.out.print("\033[H\033[2J");
-//        System.out.flush();
-//        System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        // System.out.print("\033[H\033[2J");
+        // System.out.flush();
+        // System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n");
         System.out.print("\n~~~~~~~~~~~~~~~~~~~~~~\n");
     }
 
@@ -28,12 +33,13 @@ public class Main {
         BookList.add(new Book("Bong", Genre.THRILLER, "King", 24.4));
         BookList.add(new Book("ProbStat", Genre.EROTIC, "Gorodos", 9999.9));
         BookList.add(new Book("Center", Genre.HORROR, "Osborn", 9.2));
-        // 
+        //
         BookList.add(new Book("My House of Horrors (LN)", Genre.HORROR, "I Fix Air-Conditioner (我会修空调)", 12.10));
         BookList.add(new Book("The Beginning After the End (LN)", Genre.FICTION, "TurtleMe", 85.0));
         BookList.add(new Book("Classroom of the Elite (LN)", Genre.DETECTIVE, "KINUGASA Shougo", 18.9));
         BookList.add(new Book("I'm A Spider, So What? (LN)", Genre.DRAMA, "BABA Okina", 61.5));
-        BookList.add(new Book("Jobless Reincarnation: I Will Seriously Try If I Go to Another World (WN)", Genre.COMEDY, "Rifujin na Magonote", 37.6));
+        BookList.add(new Book("Jobless Reincarnation: I Will Seriously Try If I Go to Another World (WN)", Genre.COMEDY,
+                "Rifujin na Magonote", 37.6));
         //
         BookList.add(new Book("No Game No Life (LN)", Genre.ECCHI, "KAMIYA Yuu", 7.5));
         BookList.add(new Book("How to forget C++, for dummies", Genre.PSYCHOLOGICAL, "Real life", -0.01));
@@ -67,14 +73,16 @@ public class Main {
             clear();
             site.enterSite();
             int choose = site.startMenu();
-            if (choose == Site.INCORRECT) continue;
-            if (choose == Site.EXIT) break;
+            if (choose == Site.INCORRECT)
+                continue;
+            if (choose == Site.EXIT)
+                break;
             if (choose == Site.RETURN_BOOK) { // returning the book
                 clear();
                 site.returnABook();
                 continue;
             }
-            if (choose == Site.SEE_BOOKS) { // Book previews
+            if (choose == Site.SEE_BOOKS) { // Implementation.database.object.Book previews
                 Genre gen = null;
                 while (true) {
                     clear();
@@ -83,17 +91,23 @@ public class Main {
                     gen = data.first;
                     int ID = data.second;
 
-                    if (ID == Site.EXIT) break;
-                    if (ID == Site.CHOOSE_GENRE) continue;
-                    if (ID == Site.INCORRECT) continue;
+                    if (ID == Site.EXIT)
+                        break;
+                    if (ID == Site.CHOOSE_GENRE)
+                        continue;
+                    if (ID == Site.INCORRECT)
+                        continue;
                     while (true) { // Viewing a particular book
                         clear();
                         site.printBookInfo(ID);
                         int bk = site.askAboutBooking(ID);
-                        if (bk == Site.EXIT) break;
-                        if (bk == Site.NO) break;
-                        if (bk == Site.INCORRECT) continue;
-                        if (bk == Site.YES) {// Book reservation
+                        if (bk == Site.EXIT)
+                            break;
+                        if (bk == Site.NO)
+                            break;
+                        if (bk == Site.INCORRECT)
+                            continue;
+                        if (bk == Site.YES) {// Implementation.database.object.Book reservation
                             clear();
                             site.bookABook(ID);
                         }

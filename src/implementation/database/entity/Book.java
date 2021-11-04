@@ -1,7 +1,11 @@
+package implementation.database.entity;
+
+import abstraction.database.EntityInterface;
+
 /**
- * A class representing Book
+ * A class representing Implementation.database.object.Book
  */
-public class Book {
+public class Book implements EntityInterface {
     /**
      * Coefficient which makes id unique for each book
      */
@@ -11,6 +15,7 @@ public class Book {
      * Properties of books
      */
     private final String title;
+    private final String notes;
     private final String author;
     private final Genre genre;
     private final double price;
@@ -27,6 +32,7 @@ public class Book {
         this.genre = genre;
         this.author = author;
         this.price = price;
+        this.notes = "";
     }
 
     /**
@@ -44,9 +50,8 @@ public class Book {
     }
 
     /**
-     * @param bookerName
-     * Makes book booked and set bookerName
-     * which converges with parameter
+     * @param bookerName Makes book booked and set bookerName which converges with
+     *                   parameter
      */
     public void setBooker(String bookerName) {
         this.bookerName = bookerName;
