@@ -3,19 +3,13 @@ package implementation;
 import implementation.database.entity.Book;
 import implementation.database.entity.Genre;
 import implementation.site.Site;
+import implementation.user.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
 public class Main {
-
-    private static void clear() {
-        // System.out.print("\033[H\033[2J");
-        // System.out.flush();
-        // System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n");
-        System.out.print("\n~~~~~~~~~~~~~~~~~~~~~~\n");
-    }
 
     private static void fillArrayList(ArrayList<Book> BookList, ArrayList<Book> arrayList, Genre KeyWord) {
         for (Book book : BookList)
@@ -69,53 +63,7 @@ public class Main {
 
     public static void main(String[] args) {
         Site site = new Site(generateBooksGenre());
-        while (true) { // enter the site
-            clear();
-            site.enterSite();
-            int choose = site.startMenu();
-            if (choose == Site.INCORRECT)
-                continue;
-            if (choose == Site.EXIT)
-                break;
-            if (choose == Site.RETURN_BOOK) { // returning the book
-                clear();
-                site.returnABook();
-                continue;
-            }
-            if (choose == Site.SEE_BOOKS) { // Implementation.database.object.Book previews
-                Genre gen = null;
-                while (true) {
-                    clear();
-                    site.printBookList(gen);
-                    Site.Pair<Genre, Integer> data = site.chooseABook();
-                    gen = data.first;
-                    int ID = data.second;
-
-                    if (ID == Site.EXIT)
-                        break;
-                    if (ID == Site.CHOOSE_GENRE)
-                        continue;
-                    if (ID == Site.INCORRECT)
-                        continue;
-                    while (true) { // Viewing a particular book
-                        clear();
-                        site.printBookInfo(ID);
-                        int bk = site.askAboutBooking(ID);
-                        if (bk == Site.EXIT)
-                            break;
-                        if (bk == Site.NO)
-                            break;
-                        if (bk == Site.INCORRECT)
-                            continue;
-                        if (bk == Site.YES) {// Implementation.database.object.Book reservation
-                            clear();
-                            site.bookABook(ID);
-                        }
-                    }
-                }
-            }
-        }
-        clear();
-        site.exitSite();
+        User user = new User();
+        user.startInteraction(site);
     }
 }
