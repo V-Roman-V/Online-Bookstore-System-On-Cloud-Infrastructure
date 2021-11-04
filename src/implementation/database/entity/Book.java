@@ -12,7 +12,7 @@ public class Book implements EntityInterface {
     private static int ID_coefficient;
 
     /**
-     * Properties of books
+     * Property of books
      */
     public final String title;
     public String notes;
@@ -40,7 +40,8 @@ public class Book implements EntityInterface {
         return title+author.getKey();
     }
 
-    public void setNotes(String note) {
+    public Book notes(String note) {
         this.notes = note;
+        return this;
     }
 }
