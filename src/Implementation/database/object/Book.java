@@ -1,5 +1,7 @@
+package Implementation.database.object;
+
 /**
- * A class representing Book
+ * A class representing Implementation.database.object.Book
  */
 public class Book {
     /**
@@ -11,6 +13,7 @@ public class Book {
      * Properties of books
      */
     private final String title;
+    private final String notes;
     private final String author;
     private final Genre genre;
     private final double price;
@@ -27,6 +30,7 @@ public class Book {
         this.genre = genre;
         this.author = author;
         this.price = price;
+        this.notes = "";
     }
 
     /**

@@ -1,5 +1,5 @@
-package database.object;
-
+package Implementation.database.object;
+//    HORROR, DETECTIVE, COMEDY, FICTION, THRILLER, EROTIC, DRAMA, PSYCHOLOGICAL, ROMANCE, ECCHI
 public class Genre {
     // Integer author_id;
     public String name;

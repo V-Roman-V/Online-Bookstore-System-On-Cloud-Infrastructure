@@ -10,7 +10,7 @@
 - fix typo in word enumeration
 - Update Class diagram
 - Added Javadoc for Book class
-- Added Javadoc for DataBase
+- Added Javadoc for Library
 - Merge pull request #3 from V-Roman-V/add-searching-books-by-genre
 - Removed the underscore
 - Make a comment for code
@@ -40,7 +40,7 @@
 - Added getter for list_of_books
 - Added new property of book - genre
 - Add method for asking user
-- Classes Book and DataBase created
+- Classes Book and Library created
 - Merge remote-tracking branch 'origin/main'
 - Add mock for Book and Database Add class Site
 - correct typo in readme

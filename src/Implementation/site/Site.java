@@ -1,9 +1,16 @@
+package Implementation.site;
+
+import Implementation.database.object.Book;
+import Implementation.database.Library;
+import Implementation.database.object.Genre;
+import pureooabstraction.site.SiteInterface;
+
 import java.util.*;
 
 /**
  * A class that provides methods for the user to interact with the site
  */
-public class Site {
+public class Site implements SiteInterface {
     /**
      * Constants for user responses
      */
@@ -18,15 +25,15 @@ public class Site {
     /**
      * Database storing books
      */
-    private final DataBase listOfBooks;
+    private final Library listOfBooks;
 
     /**
-     * Creates a site using the genres database
+     * Creates a site using the genres Implementation.database
      *
-     * @param genres database storing an array of books by genre
+     * @param genres Implementation.database storing an array of books by genre
      */
     public Site(HashMap<Genre, ArrayList<Book>> genres) {
-        listOfBooks = DataBase.getInstance(genres);
+        listOfBooks = Library.getInstance(genres);
     }
 
     /**
@@ -60,7 +67,7 @@ public class Site {
      *         {id, INCORRECT, EXIT} )
      */
     public Pair<Genre, Integer> chooseABook() {
-        System.out.print("Choose Genre or book by ID ");
+        System.out.print("Choose Implementation.database.object.Genre or book by ID ");
         String[] exit = { "exit" };
         printVariantsList(exit);
 
@@ -87,7 +94,7 @@ public class Site {
         Book book = listOfBooks.getBook(bookID);
         if (book == null)
             return;
-        System.out.println("Book: " + book.getTitle());
+        System.out.println("Implementation.database.object.Book: " + book.getTitle());
         System.out.println("genre: " + book.getGenre());
         System.out.println("author: " + book.getAuthor());
         System.out.println("price: " + book.getPrice() + "$");
@@ -96,7 +103,7 @@ public class Site {
     /**
      * Print short information about the book
      *
-     * @param book Book to print
+     * @param book Implementation.database.object.Book to print
      */
     public void printSmallBookInfo(Book book) {
         if (book == null)

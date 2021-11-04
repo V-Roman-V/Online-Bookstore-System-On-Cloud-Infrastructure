@@ -1,3 +1,9 @@
+package Implementation;
+
+import Implementation.database.object.Book;
+import Implementation.database.object.Genre;
+import Implementation.site.Site;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
@@ -76,7 +82,7 @@ public class Main {
                 site.returnABook();
                 continue;
             }
-            if (choose == Site.SEE_BOOKS) { // Book previews
+            if (choose == Site.SEE_BOOKS) { // Implementation.database.object.Book previews
                 Genre gen = null;
                 while (true) {
                     clear();
@@ -101,7 +107,7 @@ public class Main {
                             break;
                         if (bk == Site.INCORRECT)
                             continue;
-                        if (bk == Site.YES) {// Book reservation
+                        if (bk == Site.YES) {// Implementation.database.object.Book reservation
                             clear();
                             site.bookABook(ID);
                         }

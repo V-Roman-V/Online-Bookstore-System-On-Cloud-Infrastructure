@@ -1,14 +1,21 @@
+package Implementation.database;
+
+import Implementation.database.object.Book;
+import Implementation.database.object.Genre;
+
+import pureooabstraction.database.*;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * A class representing Database which stores books
  */
-final class DataBase {
+public final class Library implements DataBaseInterface{
     /**
      * Singleton object
      */
-    private static DataBase instance;
+    private static Library instance;
 
     /**
      * A Hashmap which stores an array of books by genre
@@ -16,11 +23,11 @@ final class DataBase {
     final HashMap<Genre, ArrayList<Book>> genre_of_books;
 
     /**
-     * Creates a database using the genres hashmap
+     * Creates a Implementation.database using the genres hashmap
      *
      * @param genres hashmap storing an array of book by genre
      */
-    private DataBase(HashMap<Genre, ArrayList<Book>> genres) {
+    private Library(HashMap<Genre, ArrayList<Book>> genres) {
         this.genre_of_books = genres;
     }
 
@@ -28,9 +35,9 @@ final class DataBase {
      * @param genres hashmap An alternative to the constructor and is the access
      *               point to an instance of Database class.
      */
-    public static DataBase getInstance(HashMap<Genre, ArrayList<Book>> genres) {
+    public static Library getInstance(HashMap<Genre, ArrayList<Book>> genres) {
         if (instance == null)
-            instance = new DataBase(genres);
+            instance = new Library(genres);
         return instance;
     }
 
