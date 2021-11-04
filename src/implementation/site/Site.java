@@ -4,6 +4,8 @@ import implementation.database.entity.Book;
 import implementation.database.Library;
 import implementation.database.entity.Genre;
 import abstraction.site.SiteInterface;
+import implementation.database.entity.Order;
+import implementation.database.entity.Reader;
 
 import java.util.*;
 
@@ -14,67 +16,74 @@ public class Site implements SiteInterface {
     /**
      * Database storing books
      */
-    private final Library listOfBooks;
+    private final Library library;
 
     /**
-     * Creates a site using the genres Implementation.database
-     *
-     * @param genres Implementation.database storing an array of books by genre
+     * Creates a site
      */
-    public Site(HashMap<Genre, ArrayList<Book>> genres) {
-        listOfBooks = Library.getInstance(genres);
+    public Site() {
+        library = Library.getInstance();
     }
 
+    @Override
     public void enterSite() {
         System.out.println("Welcome to the \"Booka\" Bookstore website. \nWhat do you want to do?");
     }
 
+    @Override
     public void exitSite() {
         System.out.println("We will be glad to meet you again in our bookstore  \"Booka\"");
     }
 
+    @Override
     public int startMenu() {
         String[] variants = { "return book", "see books", "exit" };
         return AskUser(variants);
     }
 
+    @Override
     public Pair<Genre, Integer> chooseABook() {
-        System.out.print("Choose Implementation.database.object.Genre or book by ID ");
+        System.out.print("Choose genre or book by ID ");
         String[] exit = { "exit" };
         printVariantsList(exit);
 
         String str = getInput();
         if (isExit(str))
             return new Pair<>(null, EXIT);
-        for (Genre genre : Genre.values())
-            if (str.equalsIgnoreCase(genre.toString()))
+        for (Genre genre : library.getListOfGenres())
+            if (str.equalsIgnoreCase(genre.name))
                 return new Pair<>(genre, CHOOSE_GENRE);
         if (!isNumber(str))
             return new Pair<>(null, INCORRECT);
         int id = Integer.parseInt(str);
-        if (listOfBooks.getBook(id) == null)
+        if (library.getBookByID(id) == null)
             return new Pair<>(null, INCORRECT);
         return new Pair<>(null, id);
     }
 
+    @Override
     public void printBookInfo(int bookID) {
-        Book book = listOfBooks.getBook(bookID);
+        Book book = library.getBookByID(bookID);
         if (book == null)
             return;
-        System.out.println("Implementation.database.object.Book: " + book.getTitle());
-        System.out.println("genre: " + book.getGenre());
-        System.out.println("author: " + book.getAuthor());
-        System.out.println("price: " + book.getPrice() + "$");
+        System.out.println("Book: " + book.title);
+        System.out.println("genre: " + book.genre.name);
+        System.out.println("author: " + book.author.fullName());
+        System.out.println("price: " + book.price + "$");
     }
 
+    @Override
     public void printSmallBookInfo(Book book) {
         if (book == null)
             return;
-        System.out.println("\t" + book.getTitle() + " {" + book.getAuthor() + "} id=" + book.getID());
+        System.out.println("\t" + book.title + " {" + book.author.fullName() + "} id=" + book.ID);
     }
 
+    @Override
     public int askAboutBooking(int bookID) {
-        if (listOfBooks.getBook(bookID).isBooked()) {
+        Book book = library.getBookByID(bookID);
+
+        if (!library.getIsBookAvailable(book)) {
             System.out.println("This book is already reserved.");
             String[] variants = { "exit" };
             return AskUser(variants);
@@ -84,12 +93,19 @@ public class Site implements SiteInterface {
         return AskUser(variants);
     }
 
+    @Override
     public boolean bookABook(int bookID) {
-        System.out.print("Enter your name ");
+        System.out.print("Enter your first name ");
         String[] exit = { "exit" };
         printVariantsList(exit);
-        String name = getInput();
-        if (isExit(name))
+        String first_name = getInput();
+        if (isExit(first_name))
+            return false;
+
+        System.out.print("Enter your last name ");
+        printVariantsList(exit);
+        String last_name = getInput();
+        if (isExit(last_name))
             return false;
 
         System.out.println("To book a book, you will need to pay money, do you agree?");
@@ -97,19 +113,27 @@ public class Site implements SiteInterface {
         if (AskUser(variants) != YES)
             return false;
 
-        listOfBooks.getBook(bookID).setBooker(name);
+        Book book = library.getBookByID(bookID);
+        library.reqReserveBook(book, first_name, last_name);
         System.out.println("The book is successfully reserved (Please remember book ID = " + bookID + ").");
         waitEnter();
         return true;
     }
 
+    @Override
     public boolean returnABook() {
         while (true) {
-            System.out.print("Enter your name ");
+            System.out.print("Enter your first name ");
             String[] exit = { "exit" };
             printVariantsList(exit);
-            String name = getInput();
-            if (isExit(name))
+            String first_name = getInput();
+            if (isExit(first_name))
+                return false;
+
+            System.out.print("Enter your last name ");
+            printVariantsList(exit);
+            String last_name = getInput();
+            if (isExit(last_name))
                 return false;
 
             System.out.print("Enter the book ID you want to return or");
@@ -119,15 +143,18 @@ public class Site implements SiteInterface {
                 return false;
             if (!isNumber(id))
                 break;
-            Book book = listOfBooks.getBook(Integer.parseInt(id));
+            Book book = library.getBookByID(Integer.parseInt(id));
             if (book == null)
                 break;
-            if (!book.isBooked())
+            if (library.getIsBookAvailable(book))
                 break;
-            if (!book.getBookerName().equals(name))
+            Order order = library.getCurrentBookOrder(book);
+            if (order == null)
+                break;
+            if (order.reader.first_name.equals(first_name) && order.reader.last_name.equals(last_name))
                 break;
 
-            book.releaseBook();
+            library.reqReleaseBook(book);
             System.out.println("You successfully returned the book.");
             waitEnter();
             return true;
@@ -137,12 +164,13 @@ public class Site implements SiteInterface {
         return false;
     }
 
+    @Override
     public void printBookList(Genre gen) {
         if (gen != null) {
             printGenre(gen);
             return;
         }
-        for (Genre genre : Genre.values())
+        for (Genre genre : library.getListOfGenres())
             printGenre(genre);
     }
 
@@ -153,11 +181,12 @@ public class Site implements SiteInterface {
      */
     private void printGenre(Genre genre) {
         System.out.println(genre.toString() + ":");
-        for (Book book : listOfBooks.getBooksGenre().get(genre))
+        for (Book book : library.getBooksByGenre(genre))
             printSmallBookInfo(book);
         System.out.println();
     }
 
+    @Override
     public void waitEnter() {
         System.out.println("{Press enter to continue}");
         getInput();

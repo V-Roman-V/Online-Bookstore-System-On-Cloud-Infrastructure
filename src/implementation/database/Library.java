@@ -4,6 +4,7 @@ import implementation.database.entity.*;
 
 import abstraction.database.*;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -73,5 +74,36 @@ public final class Library implements DataBaseInterface{
     @Override
     public Boolean getIsBookAvailable(Book book){
         return current_order_table.values().stream().anyMatch( order -> order.book == book);
+    }
+
+    @Override
+    public Book getBookByID(int id) {
+        for(Book book: book_table.values())
+            if(book.ID == id)
+                return book;
+        return null;
+    }
+
+    @Override
+    public Order getCurrentBookOrder(Book book) {
+        for(Order order: current_order_table.values())
+            if(order.book == book)
+                return order;
+        return null;
+    }
+
+    @Override
+    public void reqReserveBook(Book book, String first_name, String last_name) {
+        Reader reader = new Reader(first_name, last_name);//TODO
+        Order order = new Order(book, reader);
+        current_order_table.put(order.getKey(), order);
+    }
+
+    @Override
+    public void reqReleaseBook(Book book) {
+        Order order = getCurrentBookOrder(book);
+        current_order_table.remove(order.getKey());
+        order.date_return = new Date(System.currentTimeMillis());
+        archived_order_table.put(order.getKey(), order);
     }
 }

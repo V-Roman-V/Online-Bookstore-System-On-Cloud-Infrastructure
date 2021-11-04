@@ -1,8 +1,6 @@
 package abstraction.database;
 
-import implementation.database.entity.Author;
-import implementation.database.entity.Book;
-import implementation.database.entity.Genre;
+import implementation.database.entity.*;
 
 import java.util.ArrayList;
 
@@ -53,8 +51,31 @@ public interface DataBaseInterface {
      */
     Boolean getIsBookAvailable(Book book);
 
+    /**
+     * Request for book by ID
+     *
+     * @return book
+     */
+    Book getBookByID(int id);
+
+    /**
+     * Request for Order of the book
+     *
+     * @return reader
+     */
+    Order getCurrentBookOrder(Book book);
+
+    /**
+     * Request for book Reservation
+     */
+    void reqReserveBook(Book book, String first_name, String last_name);
+
+    /**
+     * Request for book releasing
+     */
+    void reqReleaseBook(Book book);
+
 // Admin requests
 //    ArrayList<Book> getListOfAvailableBook();
 //    ArrayList<Book> getListOfReservedBook();
-//    Requester getCurrentBookRequester();
 }
