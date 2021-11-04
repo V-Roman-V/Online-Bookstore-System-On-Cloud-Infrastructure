@@ -15,7 +15,7 @@ public class Book implements EntityInterface {
      * Properties of books
      */
     public final String title;
-    public final String notes;
+    public String notes;
     public Author author;
     public Genre genre;
     public final double price;
@@ -38,5 +38,9 @@ public class Book implements EntityInterface {
     @Override
     public String getKey() {
         return title+author.getKey();
+    }
+
+    public void setNotes(String note) {
+        this.notes = note;
     }
 }
