@@ -1,6 +1,6 @@
 package implementation.database.entity;
 
-import abstraction.database.EntityInterface;
+import abstraction.database.entity.EntityInterface;
 
 /**
  * A class representing Implementation.database.object.Book
