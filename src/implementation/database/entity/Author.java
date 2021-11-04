@@ -27,4 +27,9 @@ public class Author implements EntityInterface {
         this.notes = notes;
         return this;
     }
+
+    public String getKey(){
+        return first_name+last_name;
+    }
+
 }
