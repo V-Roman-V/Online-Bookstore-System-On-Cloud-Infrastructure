@@ -33,13 +33,13 @@ public class Book implements EntityInterface {
         this.notes = "";
     }
 
-    @Override
-    public String getKey() {
-        return title+author.getKey();
-    }
-
     public Book notes(String note) {
         this.notes = note;
         return this;
+    }
+
+    @Override
+    public String getKey() {
+        return title+author.getKey();
     }
 }

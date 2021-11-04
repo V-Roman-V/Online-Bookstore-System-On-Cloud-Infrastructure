@@ -18,6 +18,7 @@ public class Genre implements EntityInterface {
         return this;
     }
 
+    @Override
     public String getKey() {
         return name;
     }

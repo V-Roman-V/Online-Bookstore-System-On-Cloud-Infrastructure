@@ -23,11 +23,16 @@ public class Author implements EntityInterface {
         return this;
     }
 
-    public Author name(String notes) {
+    public Author notes(String notes) {
         this.notes = notes;
         return this;
     }
 
+    public String fullName(){
+        return first_name+" "+last_name;
+    }
+
+    @Override
     public String getKey(){
         return first_name+last_name;
     }
