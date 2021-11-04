@@ -16,8 +16,8 @@ public class Book implements EntityInterface {
      */
     public final String title;
     public final String notes;
-    public final String author;
-    public final Genre genre;
+    public Author author;
+    public Genre genre;
     public final double price;
     public final int ID;
     public boolean booked;
@@ -26,7 +26,7 @@ public class Book implements EntityInterface {
     /**
      * Creates a book
      */
-    public Book(String title, Genre genre, String author, double price) {
+    public Book(String title, Genre genre, Author author, double price) {
         ID = ++ID_coefficient;
         this.title = title;
         this.genre = genre;
