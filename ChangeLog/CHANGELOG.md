@@ -1,0 +1,53 @@
+
+# Change log v1.0.0 - 2021-11-04
+
+- apply java auto-formater
+- Add activity diagram pdf
+- Merge pull request #4 from V-Roman-V/VorArt
+- fix incorrect arrow
+- fix genre
+- add new books
+- fix typo in word enumeration
+- Update Class diagram
+- Added Javadoc for Book class
+- Added Javadoc for DataBase
+- Merge pull request #3 from V-Roman-V/add-searching-books-by-genre
+- Removed the underscore
+- Make a comment for code
+- Implement choosing books by genre
+- Update Activity diagram
+- Some refactoring
+- code autoformatting
+- Delete notNull
+- Merge pull request #2 from V-Roman-V/Integrate-book-genres-into-interface
+- Delete list_of_books Make some refactoring
+- Updating the output of books
+- solved the problems after the merge
+- Merge remote-tracking branch 'origin/MaxBranch' into Integrate-book-genres-into-interface
+- Merge pull request #1 from V-Roman-V/Implement-user-interface
+- Created function sortBooks()
+- First working version
+- Fix waiting
+- Merge commit 'b585ded6e81ca3f15e31a1aea714fbb4d450d7af' into Implement-user-interface
+- Created Enum Genre
+- second version of interface
+- Fixed problem with HashMap
+- Created some features with HashMap
+- Implement first version of interface
+- Update gitignore
+- Main now contain generated arraylist
+- Added releaseBook() and setBooker() make book booked
+- Added getter for list_of_books
+- Added new property of book - genre
+- Add method for asking user
+- Classes Book and DataBase created
+- Merge remote-tracking branch 'origin/main'
+- Add mock for Book and Database Add class Site
+- correct typo in readme
+- Starting to work on code
+- Add .idea ignore
+- Add UML activity diagram
+- Add UML class diagram
+- Change .gitignore to java template
+- Add description
+- Initial commit
