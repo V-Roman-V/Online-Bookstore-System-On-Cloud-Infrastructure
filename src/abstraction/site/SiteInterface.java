@@ -1,4 +1,4 @@
-package pureooabstraction.site;
+package abstraction.site;
 
 import implementation.database.entity.Book;
 import implementation.database.entity.Genre;

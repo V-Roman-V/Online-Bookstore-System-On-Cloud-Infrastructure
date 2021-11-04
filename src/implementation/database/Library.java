@@ -3,7 +3,7 @@ package implementation.database;
 import implementation.database.entity.Book;
 import implementation.database.entity.Genre;
 
-import pureooabstraction.database.*;
+import abstraction.database.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;

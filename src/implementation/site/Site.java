@@ -3,7 +3,7 @@ package implementation.site;
 import implementation.database.entity.Book;
 import implementation.database.Library;
 import implementation.database.entity.Genre;
-import pureooabstraction.site.SiteInterface;
+import abstraction.site.SiteInterface;
 
 import java.util.*;
 

@@ -1,7 +1,6 @@
 package implementation.database.entity;
 
-import implementation.database.entity.Genre;
-import pureooabstraction.database.EntityInterface;
+import abstraction.database.EntityInterface;
 
 /**
  * A class representing Implementation.database.object.Book

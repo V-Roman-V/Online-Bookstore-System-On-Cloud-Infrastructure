@@ -1,6 +1,6 @@
 package implementation.database.entity;
 
-import pureooabstraction.database.EntityInterface;
+import abstraction.database.EntityInterface;
 
 import java.sql.Date;
 
