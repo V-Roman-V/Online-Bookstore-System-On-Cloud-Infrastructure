@@ -14,14 +14,14 @@ public class Book implements EntityInterface {
     /**
      * Properties of books
      */
-    private final String title;
-    private final String notes;
-    private final String author;
-    private final Genre genre;
-    private final double price;
-    private final int ID;
-    private boolean booked;
-    private String bookerName;
+    public final String title;
+    public final String notes;
+    public final String author;
+    public final Genre genre;
+    public final double price;
+    public final int ID;
+    public boolean booked;
+    public String bookerName;
 
     /**
      * Creates a book
@@ -35,68 +35,8 @@ public class Book implements EntityInterface {
         this.notes = "";
     }
 
-    /**
-     * @return was the book actually booked
-     */
-    public boolean isBooked() {
-        return booked;
-    }
-
-    /**
-     * Makes book free
-     */
-    public void releaseBook() {
-        this.booked = false;
-    }
-
-    /**
-     * @param bookerName Makes book booked and set bookerName which converges with
-     *                   parameter
-     */
-    public void setBooker(String bookerName) {
-        this.bookerName = bookerName;
-        this.booked = true;
-    }
-
-    /**
-     * @return the title of book
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * @return id of the book
-     */
-    public int getID() {
-        return ID;
-    }
-
-    /**
-     * @return author of the book
-     */
-    public String getAuthor() {
-        return author;
-    }
-
-    /**
-     * @return genre of the book
-     */
-    public Genre getGenre() {
-        return genre;
-    }
-
-    /**
-     * @return name of the booker
-     */
-    public String getBookerName() {
-        return bookerName;
-    }
-
-    /**
-     * @return price of the book
-     */
-    public double getPrice() {
-        return price;
+    @Override
+    public String getKey() {
+        return title+author.getKey();
     }
 }
