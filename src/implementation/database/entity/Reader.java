@@ -5,7 +5,7 @@ import abstraction.database.entity.EntityInterface;
 public class Reader implements EntityInterface {
 
     /**
-     * Coefficient which makes id unique for each readers
+     * Coefficient which makes id unique for each reader
      */
     private static int ID_coefficient;
 

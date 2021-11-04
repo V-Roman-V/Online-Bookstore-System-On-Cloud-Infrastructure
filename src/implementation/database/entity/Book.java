@@ -20,8 +20,6 @@ public class Book implements EntityInterface {
     public Genre genre;
     public final double price;
     public final int ID;
-    public boolean booked;
-    public String bookerName;
 
     /**
      * Creates a book
