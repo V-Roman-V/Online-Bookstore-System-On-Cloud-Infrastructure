@@ -43,6 +43,7 @@ public class Site implements SiteInterface {
 
     @Override
     public Pair<Genre, Integer> chooseABook() {
+        // TODO by author, genre, ID
         System.out.print("Choose genre or book by ID ");
         String[] exit = { "exit" };
         printVariantsList(exit);
