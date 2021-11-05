@@ -18,9 +18,11 @@ public class Book implements EntityInterface {
      */
     public final String title;
     public final Author author;
+
     public String note;
     public Genre genre;
     public Double price;
+
     public final int ID;
 
     /**
@@ -36,10 +38,22 @@ public class Book implements EntityInterface {
         this.note = null;
     }
 
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
     public Author getAuthor() {
         return author;
     }
-    
+
     public String getTitle() {
         return title;
     }
