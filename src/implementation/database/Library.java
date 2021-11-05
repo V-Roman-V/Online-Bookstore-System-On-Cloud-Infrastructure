@@ -72,7 +72,7 @@ public final class Library implements DataBaseInterface{
 
     @Override
     public Boolean getIsBookAvailable(Book book){
-        return current_order_table.values().stream().anyMatch(order -> order.book == book);
+        return current_order_table.values().stream().anyMatch(order -> order.getBook() == book);
     }
     
     /**

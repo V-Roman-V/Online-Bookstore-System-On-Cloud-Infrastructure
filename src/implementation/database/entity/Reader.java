@@ -5,37 +5,53 @@ import abstraction.database.entity.EntityInterface;
 public class Reader implements EntityInterface {
 
     /**
-     * Coefficient which makes id unique for each reader
+     * fields of Reader
+     * 
+     * final means key fuild
      */
-    private static int ID_coefficient;
+    private final String first_name;
+    private final String last_name;
+    private String address;
+    private String phone_number;
 
     /**
-     * fields of readerTable
+     * Creates a Reader
      */
-    public Integer reader_ticket;
-    public String first_name;
-    public String last_name;
-    public String address;
-    public String phone_number;
-
     public Reader(String first_name, String last_name) {
-        reader_ticket = ++ID_coefficient;
         this.first_name = first_name;
         this.last_name = last_name;
     }
 
-    public Reader phoneNumber(String phone_number) {
-        this.phone_number = phone_number;
-        return this;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public Reader address(String address) {
-        this.address = address;
-        return this;
+    public void setPhoneNumber(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
+    public String getFirstName() {
+        return first_name;
+    }
+
+    public String getLastName() {
+        return last_name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhoneNumber() {
+        return phone_number;
     }
 
     @Override
     public String getKey() {
+        return first_name + last_name;
+    }
+
+    public static String getKey(String first_name, String last_name) {
         return first_name + last_name;
     }
 }

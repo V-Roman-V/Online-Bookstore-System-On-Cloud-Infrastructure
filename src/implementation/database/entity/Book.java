@@ -16,14 +16,14 @@ public class Book implements EntityInterface {
      * 
      * final means key fuild
      */
-    public final String title;
-    public final Author author;
+    private final String title;
+    private final Author author;
 
-    public String note;
-    public Genre genre;
-    public Double price;
+    private String note;
+    private Genre genre;
+    private Double price;
 
-    public final int ID;
+    private final int ID;
 
     /**
      * Creates a book
