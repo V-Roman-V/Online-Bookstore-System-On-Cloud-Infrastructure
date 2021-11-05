@@ -74,9 +74,10 @@ public final class Library implements DataBaseInterface {
 
     @Override
     public ArrayList<ReadOnlyBook> getListOfBooksByReader(String first_name, String last_name) {
-        ArrayList<ReadOnlyBook> ordered = new ArrayList<>(book_table.values());
+        ArrayList<ReadOnlyBook> ordered = new ArrayList<>();
         for(Order order: current_order_table.values()){
             var reader = order.getReader();
+
             if(reader.getFirstName().equalsIgnoreCase(first_name) && reader.getLastName().equalsIgnoreCase(last_name))
                 ordered.add(order.getBook());
         }

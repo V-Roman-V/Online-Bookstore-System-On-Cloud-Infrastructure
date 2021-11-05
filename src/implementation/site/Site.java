@@ -169,36 +169,32 @@ public class Site extends SiteInterface {
             if (isExit(first_name))
                 return EXIT;
 
-            System.out.println("Enter your last name ");
+            System.out.print("Enter your last name ");
             printVariantsList(exit);
             String last_name = getInput();
             if (isExit(last_name))
                 return EXIT;
 
             var books = library.getListOfBooksByReader(first_name, last_name);
-            System.out.print("Ordered books:");
-            for(var book: books)
-                printSmallBookInfo(book);
+            System.out.println("Ordered books:");
+            for(int i = 0; i< books.size(); i++) {
+                System.out.print(i + ") ");
+                printSmallBookInfo(books.get(i));
+            }
 
-            System.out.print("Enter the book ID you want to return or");
+            System.out.print("Enter the order number you want to return or ");
             printVariantsList(exit);
             String id = getInput();
             if (isExit(id))
                 return EXIT;
             if (!isNumber(id))
                 break;
-            ReadOnlyBook book = library.getBookByID(Integer.parseInt(id));
-            if (book == null)
+            int num = Integer.parseInt(id);
+            if( num < 0 || num >= books.size())
                 break;
+            var book = books.get(num);
             if (library.getIsBookAvailable(book))
                 break;
-            ReadOnlyOrder order = library.getCurrentBookOrder(book);
-            if (order == null)
-                break;
-            if (order.getReader().getFirstName().equalsIgnoreCase(first_name)
-                    && order.getReader().getLastName().equalsIgnoreCase(last_name))
-                break;
-
             library.reqReleaseBook(book);
             System.out.println("You successfully returned the book.");
             waitEnter();
