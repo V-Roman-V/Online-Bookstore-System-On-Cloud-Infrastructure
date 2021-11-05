@@ -2,6 +2,8 @@ package implementation.database.entity;
 
 import abstraction.database.entity.EntityInterface;
 
+import static jdk.javadoc.internal.doclets.toolkit.util.Utils.toLowerCase;
+
 /**
  * A class representing Implementation.database.object.Book
  */
@@ -38,17 +40,7 @@ public class Book implements EntityInterface {
         this.note = null;
     }
 
-    // public void setNote(String note) {
-    //     this.note = note;
-    // }
-
-    // public void setGenre(Genre genre) {
-    //     this.genre = genre;
-    // }
-
-    // public void setPrice(Double price) {
-    //     this.price = price;
-    // }
+    //Below is the implementation of Builder pattern
 
     public Book genre(Genre genre) {
         this.genre = genre;
@@ -68,6 +60,8 @@ public class Book implements EntityInterface {
     public Author getAuthor() {
         return author;
     }
+
+    //Below are getters which returns private fields of Book class
 
     public String getTitle() {
         return title;
@@ -91,10 +85,10 @@ public class Book implements EntityInterface {
 
     @Override
     public String getKey() {
-        return title + author.getKey();
+        return toLowerCase(title + author.getKey());
     }
 
     public static String getKey(String title, Author author) {
-        return title + author.getKey();
+        return toLowerCase(title + author.getKey());
     }
 }

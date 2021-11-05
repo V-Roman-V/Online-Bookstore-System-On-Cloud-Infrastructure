@@ -2,12 +2,14 @@ package implementation.database.entity;
 
 import abstraction.database.entity.EntityInterface;
 
+import static jdk.javadoc.internal.doclets.toolkit.util.Utils.toLowerCase;
+
 public class Reader implements EntityInterface {
 
     /**
      * fields of Reader
      * 
-     * final means key fuild
+     * final means key field
      */
     private final String first_name;
     private final String last_name;
@@ -22,6 +24,8 @@ public class Reader implements EntityInterface {
         this.last_name = last_name;
     }
 
+    //Below is the implementation of Builder pattern
+
     public Reader address(String address) {
         this.address = address;
         return this;
@@ -31,6 +35,8 @@ public class Reader implements EntityInterface {
         this.phone_number = phone_number;
         return this;
     }
+
+    //Below are getters which returns private fields of Reader class
 
     public String getFirstName() {
         return first_name;
@@ -54,10 +60,10 @@ public class Reader implements EntityInterface {
 
     @Override
     public String getKey() {
-        return first_name + last_name;
+        return toLowerCase(first_name + last_name);
     }
 
     public static String getKey(String first_name, String last_name) {
-        return first_name + last_name;
+        return toLowerCase(first_name + last_name);
     }
 }

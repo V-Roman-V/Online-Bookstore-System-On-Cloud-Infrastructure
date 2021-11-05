@@ -3,6 +3,8 @@ package implementation.database.entity;
 import abstraction.database.entity.EntityInterface;
 import java.sql.Date;
 
+import static jdk.javadoc.internal.doclets.toolkit.util.Utils.toLowerCase;
+
 public class Order implements EntityInterface {
     /**
      * Coefficient which makes id unique for each Orders
@@ -19,7 +21,7 @@ public class Order implements EntityInterface {
     private final Integer    order_number;
 
     /**
-     * Creates a Order
+     * Creates an Order
      */
     public Order(Book book, Reader reader) {
         order_number = ++ID_coefficient;
@@ -30,10 +32,14 @@ public class Order implements EntityInterface {
         this.reader = reader;
     }
 
+    //Below is the implementation of Builder pattern
+
     public Order date_return(Date date_return) {
         this.date_return = date_return;
         return this;
     }
+
+    //Below are getters which returns private fields of Order class
 
     public Book getBook() {
         return book;
@@ -57,6 +63,6 @@ public class Order implements EntityInterface {
 
     @Override
     public String getKey() {
-        return order_number.toString();
+        return toLowerCase(order_number.toString());
     }
 }

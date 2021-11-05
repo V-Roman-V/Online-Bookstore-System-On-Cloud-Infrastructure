@@ -16,7 +16,7 @@ public final class Library implements DataBaseInterface {
     /** Singleton object */
     private static Library instance;
 
-    /** Hashmaps which stores a databases */
+    /** Hashmaps which stores databases */
     static HashMap<String, Book> book_table;
     static HashMap<String, Author> author_table;
     static HashMap<String, Reader> reader_table;

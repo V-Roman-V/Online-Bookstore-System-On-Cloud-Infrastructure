@@ -4,12 +4,14 @@ import abstraction.database.entity.EntityInterface;
 
 import java.sql.Date;
 
+import static jdk.javadoc.internal.doclets.toolkit.util.Utils.toLowerCase;
+
 public class Author implements EntityInterface {
 
     /**
      * Property of Author
      * 
-     * final means key fuild
+     * final means key field
      */
     private final String first_name;
     private final String last_name;
@@ -17,12 +19,14 @@ public class Author implements EntityInterface {
     private Date birth_date;
 
     /**
-     * Creates a Author
+     * Creates an Author
      */
     public Author(String first_name, String last_name) {
         this.first_name = first_name;
         this.last_name = last_name;
     }
+
+    //Below is the implementation of Builder pattern
 
     public Author birth_date(Date birth_date) {
         this.birth_date = birth_date;
@@ -33,6 +37,8 @@ public class Author implements EntityInterface {
         this.note = note;
         return this;
     }
+
+    //Below are getters which returns private fields of Author class
 
     public String getFirstName() {
         return first_name;
@@ -56,11 +62,11 @@ public class Author implements EntityInterface {
 
     @Override
     public String getKey() {
-        return first_name + last_name;
+        return toLowerCase(first_name + last_name);
     }
 
     public static String getKey(String first_name, String last_name) {
-        return first_name + last_name;
+        return toLowerCase(first_name + last_name);
     }
 
 }
