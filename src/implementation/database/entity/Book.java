@@ -13,33 +13,59 @@ public class Book implements EntityInterface {
 
     /**
      * Property of books
+     * 
+     * final means key fuild
      */
     public final String title;
-    public String notes;
-    public Author author;
+    public final Author author;
+    public String note;
     public Genre genre;
-    public final double price;
+    public Double price;
     public final int ID;
 
     /**
      * Creates a book
      */
-    public Book(String title, Genre genre, Author author, double price) {
+    public Book(String title, Author author) {
         ID = ++ID_coefficient;
         this.title = title;
-        this.genre = genre;
         this.author = author;
-        this.price = price;
-        this.notes = "";
+
+        this.genre = null;
+        this.price = null;
+        this.note = null;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+    
+    public String getTitle() {
+        return title;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public Double getPrice() {
+        return price;
     }
 
     @Override
     public String getKey() {
-        return title+author.getKey();
+        return title + author.getKey();
     }
 
-    public Book notes(String note) {
-        this.notes = note;
-        return this;
+    public static String getKey(String title, Author author) {
+        return title + author.getKey();
     }
 }

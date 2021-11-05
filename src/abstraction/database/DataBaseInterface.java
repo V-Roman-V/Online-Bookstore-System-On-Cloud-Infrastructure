@@ -3,11 +3,13 @@ package abstraction.database;
 import implementation.database.entity.Author;
 import implementation.database.entity.Book;
 import implementation.database.entity.Genre;
+import implementation.database.entity.Order;
+import implementation.database.entity.Reader;
 
 import java.util.ArrayList;
 
 public interface DataBaseInterface {
-// User requests
+    // User requests
 
     /**
      * Request for list of books by a specific author
@@ -53,8 +55,12 @@ public interface DataBaseInterface {
      */
     Boolean getIsBookAvailable(Book book);
 
-// Admin requests
-//    ArrayList<Book> getListOfAvailableBook();
-//    ArrayList<Book> getListOfReservedBook();
-//    Requester getCurrentBookRequester();
+    // Admin requests
+    // ArrayList<Book> getListOfAvailableBook();
+    // ArrayList<Book> getListOfReservedBook();
+    // Requester getCurrentBookRequester();
+
+    public class BookForm {
+    };
+
 }
