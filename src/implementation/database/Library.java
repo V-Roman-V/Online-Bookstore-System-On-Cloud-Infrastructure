@@ -270,7 +270,7 @@ public final class Library implements DataBaseInterface {
         BookForm.getInstance("The ninth neighbor", author5).price(380.7).genre(EROTIC);
 
         BookForm.getInstance("The Beginning After the End", "Kiguasa", "Shougo").price(85.0).genre(FICTION);
-        BookForm.getInstance("Re:Zero - Starting Life in Another World","NAGATSUKI", "Tappei").price(20.9).genre(ROMANCE));
+        BookForm.getInstance("Re:Zero - Starting Life in Another World","NAGATSUKI", "Tappei").price(20.9).genre(ROMANCE);
         BookForm.getInstance("No Game No Life","KAMIYA", "Yuu").price(7.5).genre(ECCHI);
         BookForm.getInstance("I'm A Spider, So What?","BABA", "Okina").price(61.5).genre(PSYCHOLOGICAL);
         BookForm.getInstance("Classroom of the Elite","KINUGASA", "Shougo").price(18.9).genre(DETECTIVE);
