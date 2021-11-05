@@ -10,14 +10,17 @@ public class Order implements EntityInterface {
     private static int ID_coefficient;
 
     /**
-     * fields of Order
+     * Fields of Order
      */
-    public Integer order_number;
-    public Book book;
-    public Reader reader;
-    public Date date_booking;
-    public Date date_return;
+    private final Book       book;
+    private final Reader     reader;
+    private final Date       date_booking;
+    private Date             date_return;
+    private final Integer    order_number;
 
+    /**
+     * Creates a Order
+     */
     public Order(Book book, Reader reader) {
         order_number = ++ID_coefficient;
         date_booking = new Date(System.currentTimeMillis());
@@ -32,9 +35,28 @@ public class Order implements EntityInterface {
         return this;
     }
 
+    public Book getBook() {
+        return book;
+    }
+
+    public Reader getReader() {
+        return reader;
+    }
+
+    public Date getDateBooking() {
+        return date_booking;
+    }
+
+    public Date getDateReturn() {
+        return date_return;
+    }
+
+    public Integer getOrderNumber() {
+        return order_number;
+    }
+
     @Override
     public String getKey() {
         return order_number.toString();
     }
-
 }

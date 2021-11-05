@@ -5,7 +5,7 @@ import implementation.database.entity.*;
 import java.util.ArrayList;
 
 public interface DataBaseInterface {
-// User requests
+    // User requests
 
     /**
      * Request for list of books by a specific author
@@ -97,7 +97,7 @@ public interface DataBaseInterface {
      */
     void reqReleaseBook(Book book);
 
-// Admin requests
-//    ArrayList<Book> getListOfAvailableBook();
-//    ArrayList<Book> getListOfReservedBook();
+    // Admin requests
+    // ArrayList<Book> getListOfAvailableBook();
+    // ArrayList<Book> getListOfReservedBook();
 }
