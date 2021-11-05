@@ -65,10 +65,10 @@ public class ReadOnlyBook implements EntityInterface {
 
     @Override
     public String getKey() {
-        return title + author.getKey();
+        return getKey(title, author);
     }
 
     public static String getKey(String title, ReadOnlyAuthor author) {
-        return title + author.getKey();
+        return (title + author.getKey()).toLowerCase();
     }
 }

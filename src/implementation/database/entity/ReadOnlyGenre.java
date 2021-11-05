@@ -30,10 +30,10 @@ public class ReadOnlyGenre implements EntityInterface {
 
     @Override
     public String getKey() {
-        return name;
+        return getKey(name);
     }
 
     public static String getKey(String name) {
-        return name;
+        return name.toLowerCase();
     }
 }

@@ -52,6 +52,6 @@ public class ReadOnlyOrder implements EntityInterface {
 
     @Override
     public String getKey() {
-        return order_number.toString();
+        return order_number.toString().toLowerCase();
     }
 }

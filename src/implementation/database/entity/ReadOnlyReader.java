@@ -44,10 +44,10 @@ public class ReadOnlyReader implements EntityInterface {
 
     @Override
     public String getKey() {
-        return first_name + last_name;
+        return getKey(first_name, last_name);
     }
 
     public static String getKey(String first_name, String last_name) {
-        return first_name + last_name;
+        return (first_name + last_name).toLowerCase();
     }
 }
