@@ -39,8 +39,10 @@ public final class Library implements DataBaseInterface {
      * Library class.
      */
     public static Library getInstance() {
-        if (instance == null)
+        if (instance == null) {
             instance = new Library();
+            fill_up_my_vaults_like_administrator();
+        }
         return instance;
     }
 
@@ -86,7 +88,7 @@ public final class Library implements DataBaseInterface {
      * 
      * TODO configuring administrator-only access rights
      */
-    public class BookForm {
+    protected class BookForm {
         public static Book getInstance(String book_title, Author author) {
             String _book_key = Book.getKey(book_title, author);
             if (null == book_table.get(_book_key))
@@ -112,7 +114,7 @@ public final class Library implements DataBaseInterface {
      * 
      * TODO configuring administrator-only access rights
      */
-    public class AuthorForm {
+    protected class AuthorForm {
         public static Author getInstance(String first_name, String last_name) {
             String _author_key = Author.getKey(first_name, last_name);
             if (null == author_table.get(_author_key))
@@ -133,7 +135,7 @@ public final class Library implements DataBaseInterface {
      * 
      * TODO configuring administrator-only access rights
      */
-    public class GenreForm {
+    protected class GenreForm {
         public static Genre getInstance(String name) {
             String _genre_key = Genre.getKey(name);
             if (null == genre_table.get(_genre_key))
@@ -154,7 +156,7 @@ public final class Library implements DataBaseInterface {
      * 
      * TODO configuring administrator-only access rights
      */
-    public class ReaderForm {
+    protected class ReaderForm {
         public static Reader getInstance(String first_name, String last_name) {
             String _reader_key = Reader.getKey(first_name, last_name);
             if (null == reader_table.get(_reader_key))
@@ -217,5 +219,66 @@ public final class Library implements DataBaseInterface {
         current_order_table.remove(order.getKey());
         order.date_return(new Date(System.currentTimeMillis()));
         archived_order_table.put(order.getKey(), order);
+    }
+
+    private static void fill_up_my_vaults_like_administrator() {
+
+        Genre DETECTIVE = GenreForm.getInstance("Detective").description("like sherlok Pomps");
+        Genre HORROR = GenreForm.getInstance("Horror").description("you will scream");
+        Genre COMEDY = GenreForm.getInstance("Comedy").description("you will ha-ha-ah ygar))! ");
+        Genre FICTION = GenreForm.getInstance("Fiction").description("is about deep space galaxy or far future");
+        Genre THRILLER = GenreForm.getInstance("Thriller").description("pif-pav russian weekdays");
+        Genre EROTIC = GenreForm.getInstance("Erotic").description("Attention, 16+ only!");
+        Genre DRAMA = GenreForm.getInstance("Drama").description("It is not about farcry");
+        Genre PSYCHOLOGICAL = GenreForm.getInstance("Psychological").description("aaaaaa");
+        Genre ROMANCE = GenreForm.getInstance("Romance").description("aaaaaa");
+        Genre ECCHI = GenreForm.getInstance("Ecchi").description("Attention, 18+ only!");
+ 
+        BookForm.getInstance("Max", "Alexsander", "Pushkin").price(22.2).genre(GenreForm.getInstance("DETECTIVE"));
+        BookForm.getInstance("Nastya","Lenin","Ulianov").genre(HORROR).price(12.22).note("...");
+
+        Author author = AuthorForm.getInstance("Thinker", "Cristiano");
+        BookForm.getInstance("Ronaldo", author).price(10.9).genre(COMEDY);
+
+        // BookList.add(new Book("Rust", Genre.FICTION, "krug", 85.4));
+        // BookList.add(new Book("Bong", Genre.THRILLER, "King", 24.4));
+        // BookList.add(new Book("ProbStat", Genre.EROTIC, "Gorodos", 9999.9));
+        // BookList.add(new Book("Center", Genre.HORROR, "Osborn", 9.2));
+
+        // BookList.add(new Book("My House of Horrors (LN)", Genre.HORROR, "I Fix
+        // Air-Conditioner (我会修空调)", 12.10));
+        // BookList.add(new Book("The Beginning After the End (LN)", Genre.FICTION,
+        // "TurtleMe", 85.0));
+        // BookList.add(new Book("Classroom of the Elite (LN)", Genre.DETECTIVE,
+        // "KINUGASA Shougo", 18.9));
+        // BookList.add(new Book("I'm A Spider, So What? (LN)", Genre.DRAMA, "BABA
+        // Okina", 61.5));
+        // BookList.add(new Book("Jobless Reincarnation: I Will Seriously Try If I Go to
+        // Another World (WN)", Genre.COMEDY,
+        // "Rifujin na Magonote", 37.6));
+        // //
+        // BookList.add(new Book("No Game No Life (LN)", Genre.ECCHI, "KAMIYA Yuu",
+        // 7.5));
+        // BookList.add(new Book("How to forget C++, for dummies", Genre.PSYCHOLOGICAL,
+        // "Real life", -0.01));
+        // BookList.add(new Book("Spice and Wolf", Genre.DRAMA, "Isuna Hasekura",
+        // 56.7));
+        // BookList.add(new Book("Danganronpa/Zero (N)", Genre.DETECTIVE, "Kazutaka
+        // Kodaka", 3.3));
+        // BookList.add(new Book("Another (N)", Genre.HORROR, "Yukito Ayatsuji", 2.2));
+        // //
+        // BookList.add(new Book("Re:Zero - Starting Life in Another World",
+        // Genre.ROMANCE, "NAGATSUKI Tappei", 20.9));
+        // BookList.add(new Book("Knights of the Forty Islands", Genre.FICTION, "Sergey
+        // Lukyanenko", 19.90));
+        // BookList.add(new Book("The Stormlight Archive", Genre.FICTION, "Brandon
+        // Sanderson", 9.45));
+        // BookList.add(new Book("Mistborn Trilogy ", Genre.FICTION, "Brandon
+        // Sanderson", 8.66));
+        // BookList.add(new Book("Violet Evergarden (N)", Genre.ROMANCE, "AKATSUKI
+        // Kana", 6.7));
+        // //
+        // return BookList;
+        // }
     }
 }
