@@ -2,6 +2,8 @@ package implementation.database.entity;
 
 import abstraction.database.entity.EntityInterface;
 
+import static jdk.javadoc.internal.doclets.toolkit.util.Utils.toLowerCase;
+
 // Genre example: HORROR, DETECTIVE, COMEDY, FICTION, THRILLER, EROTIC, DRAMA, PSYCHOLOGICAL, ROMANCE
 
 public class Genre implements EntityInterface {
@@ -39,10 +41,10 @@ public class Genre implements EntityInterface {
 
     @Override
     public String getKey() {
-        return name;
+        return toLowerCase(name);
     }
 
     public static String getKey(String name) {
-        return name;
+        return toLowerCase(name);
     }
 }

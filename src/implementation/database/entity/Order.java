@@ -3,6 +3,8 @@ package implementation.database.entity;
 import abstraction.database.entity.EntityInterface;
 import java.sql.Date;
 
+import static jdk.javadoc.internal.doclets.toolkit.util.Utils.toLowerCase;
+
 public class Order implements EntityInterface {
     /**
      * Coefficient which makes id unique for each Orders
@@ -61,6 +63,6 @@ public class Order implements EntityInterface {
 
     @Override
     public String getKey() {
-        return order_number.toString();
+        return toLowerCase(order_number.toString());
     }
 }
