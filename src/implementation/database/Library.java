@@ -59,7 +59,7 @@ public final class Library implements DataBaseInterface {
     @Override
     public ArrayList<ReadOnlyBook> getBooksByFirstLetter(Character letter) {
         return new ArrayList<>(book_table.values().stream()
-                .filter(book -> book.getTitle().toLowerCase().charAt(0) == letter).toList());
+                .filter(book -> book.getTitle().toLowerCase().charAt(0) == Character.toLowerCase(letter)).toList());
     }
 
     @Override
@@ -73,13 +73,19 @@ public final class Library implements DataBaseInterface {
     }
 
     @Override
-    public ArrayList<ReadOnlyBook> getListOfBooks() {
-        return new ArrayList<>(book_table.values());
+    public ArrayList<ReadOnlyBook> getListOfBooksByReader(String first_name, String last_name) {
+        ArrayList<ReadOnlyBook> ordered = new ArrayList<>(book_table.values());
+        for(Order order: current_order_table.values()){
+            var reader = order.getReader();
+            if(reader.getFirstName().equalsIgnoreCase(first_name) && reader.getLastName().equalsIgnoreCase(last_name))
+                ordered.add(order.getBook());
+        }
+        return ordered;
     }
 
     @Override
     public Boolean getIsBookAvailable(ReadOnlyBook book) {
-        return current_order_table.values().stream().anyMatch(order -> order.getBook() == book);
+        return current_order_table.values().stream().noneMatch(order -> order.getBook() == book);
     }
 
     /**

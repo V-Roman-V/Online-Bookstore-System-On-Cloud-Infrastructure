@@ -46,11 +46,11 @@ public interface DataBaseInterface {
     ArrayList<ReadOnlyAuthor> getListOfAuthors();
 
     /**
-     * Request for list of all books
+     * Request for a list of all reservations by a specific reader
      *
      * @return list of books
      */
-    ArrayList<ReadOnlyBook> getListOfBooks();
+    ArrayList<ReadOnlyBook> getListOfBooksByReader(String first_name, String last_name);
 
     /**
      * Request for information about book reservations

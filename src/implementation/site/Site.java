@@ -169,11 +169,16 @@ public class Site extends SiteInterface {
             if (isExit(first_name))
                 return EXIT;
 
-            System.out.print("Enter your last name ");
+            System.out.println("Enter your last name ");
             printVariantsList(exit);
             String last_name = getInput();
             if (isExit(last_name))
                 return EXIT;
+
+            var books = library.getListOfBooksByReader(first_name, last_name);
+            System.out.print("Ordered books:");
+            for(var book: books)
+                printSmallBookInfo(book);
 
             System.out.print("Enter the book ID you want to return or");
             printVariantsList(exit);
