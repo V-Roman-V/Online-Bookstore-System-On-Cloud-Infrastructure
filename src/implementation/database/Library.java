@@ -233,20 +233,48 @@ public final class Library implements DataBaseInterface {
         Genre PSYCHOLOGICAL = GenreForm.getInstance("Psychological").description("aaaaaa");
         Genre ROMANCE = GenreForm.getInstance("Romance").description("aaaaaa");
         Genre ECCHI = GenreForm.getInstance("Ecchi").description("Attention, 18+ only!");
- 
-        BookForm.getInstance("Max", "Alexsander", "Pushkin").price(22.2).genre(GenreForm.getInstance("DETECTIVE"));
+
+        BookForm.getInstance("Max", "Alexsander", "Pushkin").price(22.2).genre(DETECTIVE);
         BookForm.getInstance("Nastya","Lenin","Ulianov").genre(HORROR).price(12.22).note("...");
+        BookForm.getInstance("Rust", "Alexsander", "Krug").price(85.4).genre(FICTION);
+        BookForm.getInstance("Bong", "Stephen", "King").price(24.4).genre(THRILLER);
+        BookForm.getInstance("ProbStat", "Sergey", "Gorodetskiy").price(9999.9).genre(EROTIC);
+        BookForm.getInstance("Center", "Norman", "Osborn").price(85.4).genre(HORROR);
+        BookForm.getInstance("My House of Horrors (LN)", "Okamura", "Tadashi").price(85.4).genre(HORROR);
 
-        Author author = AuthorForm.getInstance("Thinker", "Cristiano");
-        BookForm.getInstance("Ronaldo", author).price(10.9).genre(COMEDY);
 
-        // BookList.add(new Book("Rust", Genre.FICTION, "krug", 85.4));
-        // BookList.add(new Book("Bong", Genre.THRILLER, "King", 24.4));
-        // BookList.add(new Book("ProbStat", Genre.EROTIC, "Gorodos", 9999.9));
-        // BookList.add(new Book("Center", Genre.HORROR, "Osborn", 9.2));
+        Author author1 = AuthorForm.getInstance("Thinker", "Cristiano");
+        BookForm.getInstance("Ronaldo", author1).price(10.9).genre(COMEDY);
 
-        // BookList.add(new Book("My House of Horrors (LN)", Genre.HORROR, "I Fix
-        // Air-Conditioner (我会修空调)", 12.10));
+        Author author2 = AuthorForm.getInstance("Nikolay", "Tolstoy");
+        BookForm.getInstance("Mumu", author2).price(120.1).genre(DRAMA);
+        BookForm.getInstance("War and Peace", author2).price(309.8).genre(DRAMA);
+        BookForm.getInstance("Anna Karenina", author2).price(238.0).genre(DRAMA);
+
+        Author author3 = AuthorForm.getInstance("Andjey", "Sapkovskiy");
+        BookForm.getInstance("The Witcher: Last wish", author3).price(873.2).genre(FICTION);
+        BookForm.getInstance("The Witcher: The blood of elves", author3).price(2109.2).genre(FICTION);
+        BookForm.getInstance("The Witcher: Owner of lake", author3).price(479.2).genre(FICTION);
+        BookForm.getInstance("THE Witcher: Baptism of fire", author3).price(396.9).genre(FICTION);
+
+        Author author4 = AuthorForm.getInstance("Natalya", "Nesterova");
+        BookForm.getInstance("Find a cat", author4).price(182.2).genre(ROMANCE);
+        BookForm.getInstance("Polina Sergeevna", author4).price(164.0).genre(ROMANCE);
+        BookForm.getInstance("Make it louder", author4).price(410.0).genre(ROMANCE);
+        BookForm.getInstance("You do not hear me", author4).price(182.4).genre(ROMANCE);
+
+        Author author5 = AuthorForm.getInstance("Ashira", "Haan");
+        BookForm.getInstance("Love without dress-code", author5).price(340.8).genre(EROTIC);
+        BookForm.getInstance("Sex only", author5).price(400.2).genre(EROTIC);
+        BookForm.getInstance("Lover of your husband", author5).price(538.1).genre(EROTIC);
+        BookForm.getInstance("The ninth neighbor", author5).price(380.7).genre(EROTIC);
+
+        BookForm.getInstance("The Beginning After the End", "Kiguasa", "Shougo").price(85.0).genre(FICTION);
+        BookForm.getInstance("Re:Zero - Starting Life in Another World","NAGATSUKI", "Tappei").price(20.9).genre(ROMANCE));
+        BookForm.getInstance("No Game No Life","KAMIYA", "Yuu").price(7.5).genre(ECCHI);
+        BookForm.getInstance("I'm A Spider, So What?","BABA", "Okina").price(61.5).genre(PSYCHOLOGICAL);
+
+
         // BookList.add(new Book("The Beginning After the End (LN)", Genre.FICTION,
         // "TurtleMe", 85.0));
         // BookList.add(new Book("Classroom of the Elite (LN)", Genre.DETECTIVE,
@@ -257,8 +285,7 @@ public final class Library implements DataBaseInterface {
         // Another World (WN)", Genre.COMEDY,
         // "Rifujin na Magonote", 37.6));
         // //
-        // BookList.add(new Book("No Game No Life (LN)", Genre.ECCHI, "KAMIYA Yuu",
-        // 7.5));
+
         // BookList.add(new Book("How to forget C++, for dummies", Genre.PSYCHOLOGICAL,
         // "Real life", -0.01));
         // BookList.add(new Book("Spice and Wolf", Genre.DRAMA, "Isuna Hasekura",
