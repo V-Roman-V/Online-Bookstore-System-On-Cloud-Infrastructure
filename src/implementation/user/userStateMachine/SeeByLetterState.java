@@ -18,6 +18,7 @@ public class SeeByLetterState extends UserState {
             case INCORRECT -> incorrect();
             case EXIT -> back();
             case YES -> user.changeState(new ChooseBookState(user, response.second, this));
+        default -> throw new IllegalArgumentException("Unexpected value: " + response.first);
         }
     }
 

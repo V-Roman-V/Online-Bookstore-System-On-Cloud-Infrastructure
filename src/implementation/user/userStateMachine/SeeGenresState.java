@@ -16,6 +16,7 @@ public class SeeGenresState extends UserState {
             case INCORRECT -> incorrect();
             case EXIT -> back();
             case YES -> user.changeState(new SeeByGenreState(user, response.second));
+        default -> throw new IllegalArgumentException("Unexpected value: " + response.first);
         }
     }
 

@@ -17,6 +17,7 @@ public class SeeBooksState extends UserState {
             case ALPHABETIC -> user.changeState(new SeeAlphabeticState(user));
             case GENRE -> user.changeState(new SeeGenresState(user));
             case AUTHOR -> user.changeState(new SeeAuthorsState(user));
+        default -> throw new IllegalArgumentException("Unexpected value: " + response);
         }
     }
 

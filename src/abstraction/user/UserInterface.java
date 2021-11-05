@@ -9,14 +9,22 @@ public abstract class UserInterface {
 
     public UserInterface(Site site){
         this.site = site;
-        state = null;
+        setState(null);
+    }
+
+    public UserState getState() {
+        return state;
+    }
+
+    private void setState(UserState state) {
+        this.state = state;
     }
 
     public void startInteraction() {
-        state = new EnterSiteState(this);
+        setState(new EnterSiteState(this));
     }
 
     public void changeState(UserState state){
-        this.state = state;
+        this.setState(state);
     }
 }
