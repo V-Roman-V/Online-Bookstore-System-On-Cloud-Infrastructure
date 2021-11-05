@@ -2,12 +2,12 @@ package implementation.user.userStateMachine;
 
 import abstraction.user.UserInterface;
 import abstraction.user.UserState;
-import implementation.database.entity.Author;
+import implementation.database.entity.ReadOnlyAuthor;
 
 public class SeeByAuthorState extends UserState {
-    public Author author;
+    public ReadOnlyAuthor author;
 
-    public SeeByAuthorState(UserInterface user, Author author){
+    public SeeByAuthorState(UserInterface user, ReadOnlyAuthor author){
         super(user);
         state = States.SeeByAuthorState;
         this.author = author;

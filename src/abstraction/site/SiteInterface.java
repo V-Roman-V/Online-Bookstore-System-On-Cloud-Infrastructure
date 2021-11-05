@@ -1,8 +1,8 @@
 package abstraction.site;
 
-import implementation.database.entity.Author;
-import implementation.database.entity.Book;
-import implementation.database.entity.Genre;
+import implementation.database.entity.ReadOnlyAuthor;
+import implementation.database.entity.ReadOnlyBook;
+import implementation.database.entity.ReadOnlyGenre;
 
 public abstract class SiteInterface {
     /** Constants for user responses */
@@ -36,28 +36,28 @@ public abstract class SiteInterface {
      *
      * @return pair: first=Response{Exit,Incorrect, YES}, second=author
      */
-    public abstract Pair<Response, Author> askAuthor();
+    public abstract Pair<Response, ReadOnlyAuthor> askAuthor();
 
     /**
-     * Requests the user to select a Genre
+     * Requests the user to select a genre
      *
      * @return pair: first=Response{Exit,Incorrect, YES}, second=genre
      */
-    public abstract Pair<Response, Genre> askGenre();
+    public abstract Pair<Response, ReadOnlyGenre> askGenre();
 
     /**
      * Prints a list of books of one author
      *
      * @param author specific author
      */
-    public abstract void printBooksByAuthor(Author author);
+    public abstract void printBooksByAuthor(ReadOnlyAuthor author);
 
     /**
      * Prints a list of books of one genre
      *
      * @param genre specific author
      */
-    public abstract void printBooksByGenre(Genre genre);
+    public abstract void printBooksByGenre(ReadOnlyGenre genre);
 
     /**
      * Prints a list of books with first Letter
@@ -71,33 +71,33 @@ public abstract class SiteInterface {
      *
      * @return pair: first=Response{Exit,Incorrect, YES}, second=book
      */
-    public abstract Pair<Response, Book> chooseABook();
+    public abstract Pair<Response, ReadOnlyBook> chooseABook();
 
     /**
      * Prints complete information about the book
      *
      * @param book book to print
      */
-    public abstract void printBookInfo(Book book);
+    public abstract void printBookInfo(ReadOnlyBook book);
 
     /**
      * Print short information about the book
      *
-     * @param book Book to print
+     * @param book book to print
      */
-    public abstract void printSmallBookInfo(Book book);
+    public abstract void printSmallBookInfo(ReadOnlyBook book);
     /**
      * Asks the user if he wants to reserve the book
      *
      * @param book selected book
      * @return user response {NO, YES, EXIT}
      */
-    public abstract Response askAboutBooking(Book book);
+    public abstract Response askAboutBooking(ReadOnlyBook book);
 
     /**
      * Asks the user if he wants to reserve the book
      *
-     * @return user response {Alphabetic, Genre, Author, Exit, Incorrect}
+     * @return user response {alphabetic, genre, author, exit, incorrect}
      */
     public abstract Response askSearchType();
 
@@ -107,7 +107,7 @@ public abstract class SiteInterface {
      * @param book selected book
      * @return was the book reserved: user response {Yes, No}
      */
-    public abstract Response bookABook(Book book);
+    public abstract Response bookABook(ReadOnlyBook book);
 
     /**
      * Provides a form for book returning

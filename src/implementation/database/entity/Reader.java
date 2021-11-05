@@ -1,25 +1,11 @@
 package implementation.database.entity;
 
-import abstraction.database.entity.EntityInterface;
 
-public class Reader implements EntityInterface {
+public class Reader extends ReadOnlyReader {
 
-    /**
-     * fields of Reader
-     * 
-     * final means key fuild
-     */
-    private final String first_name;
-    private final String last_name;
-    private String address;
-    private String phone_number;
-
-    /**
-     * Creates a Reader
-     */
+    
     public Reader(String first_name, String last_name) {
-        this.first_name = first_name;
-        this.last_name = last_name;
+        super(first_name, last_name);
     }
 
     public Reader address(String address) {
@@ -31,33 +17,5 @@ public class Reader implements EntityInterface {
         this.phone_number = phone_number;
         return this;
     }
-
-    public String getFirstName() {
-        return first_name;
-    }
-
-    public String getLastName() {
-        return last_name;
-    }
     
-    public String getFullName() {
-        return first_name+" "+last_name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getPhoneNumber() {
-        return phone_number;
-    }
-
-    @Override
-    public String getKey() {
-        return first_name + last_name;
-    }
-
-    public static String getKey(String first_name, String last_name) {
-        return first_name + last_name;
-    }
 }
