@@ -39,6 +39,10 @@ public class Reader implements EntityInterface {
     public String getLastName() {
         return last_name;
     }
+    
+    public String getFullName() {
+        return first_name+" "+last_name;
+    }
 
     public String getAddress() {
         return address;

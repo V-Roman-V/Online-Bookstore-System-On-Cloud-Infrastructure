@@ -42,6 +42,10 @@ public class Author implements EntityInterface {
         return last_name;
     }
 
+    public String getFullName() {
+        return first_name+" "+last_name;
+    }
+
     public String getNote() {
         return note;
     }
