@@ -16,6 +16,7 @@ public class SeeAuthorsState extends UserState {
             case INCORRECT -> incorrect();
             case EXIT -> back();
             case YES -> user.changeState(new SeeByAuthorState(user, response.second));
+        default -> throw new IllegalArgumentException("Unexpected value: " + response.first);
         }
     }
 

@@ -21,6 +21,7 @@ public class ChooseBookState extends UserState {
             case INCORRECT -> incorrect();
             case EXIT, NO -> back();
             case YES -> returnBook();
+        default -> throw new IllegalArgumentException("Unexpected value: " + response);
         }
     }
 

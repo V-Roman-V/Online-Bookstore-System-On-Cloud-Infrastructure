@@ -17,6 +17,7 @@ public class EnterSiteState extends UserState {
             case EXIT -> back();
             case RETURN_BOOK -> returnBook();
             case SEE_BOOKS -> user.changeState(new SeeBooksState(user));
+        default -> throw new IllegalArgumentException("Unexpected value: " + response);
         }
     }
 

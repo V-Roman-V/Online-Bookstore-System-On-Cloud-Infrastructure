@@ -60,17 +60,17 @@ public class Site extends SiteInterface {
     public void printBookInfo(Book book) {
         if (book == null)
             return;
-        System.out.println("Book: " + book.title);
-        System.out.println("genre: " + book.genre.name);
-        System.out.println("author: " + book.author.fullName());
-        System.out.println("price: " + book.price + "$");
+        System.out.println("Book: " + book.getTitle());
+        System.out.println("genre: " + book.getGenre().getName());
+        System.out.println("author: " + book.getAuthor().getFullName());
+        System.out.println("price: " + book.getPrice() + "$");
     }
 
     @Override
     public void printSmallBookInfo(Book book) {
         if (book == null)
             return;
-        System.out.println("\t" + book.title + " {" + book.author.fullName() + "} id=" + book.ID);
+        System.out.println("\t" + book.getTitle() + " {" + book.getAuthor().getFullName() + "} id=" + book.getID());
     }
 
     @Override
@@ -154,7 +154,7 @@ public class Site extends SiteInterface {
             return EXIT;
 
         library.reqReserveBook(book, first_name, last_name);
-        System.out.println("The book is successfully reserved (Please remember book ID = " + book.ID + ").");
+        System.out.println("The book is successfully reserved (Please remember book ID = " + book.getID() + ").");
         waitEnter();
         return YES;
     }
@@ -190,7 +190,7 @@ public class Site extends SiteInterface {
             Order order = library.getCurrentBookOrder(book);
             if (order == null)
                 break;
-            if (order.reader.first_name.equalsIgnoreCase(first_name) && order.reader.last_name.equalsIgnoreCase(last_name))
+            if (order.getReader().getFirstName().equalsIgnoreCase(first_name) && order.getReader().getLastName().equalsIgnoreCase(last_name))
                 break;
 
             library.reqReleaseBook(book);
@@ -217,7 +217,7 @@ public class Site extends SiteInterface {
         for (Genre genre : library.getListOfGenres()) {
             int count = library.getBooksByGenre(genre).size();
             if(count==0)continue;
-            System.out.println(genre.name+" ("+count+" books)");
+            System.out.println(genre.getName()+" ("+count+" books)");
         }
     }
 
@@ -226,20 +226,20 @@ public class Site extends SiteInterface {
         for (Author author : library.getListOfAuthors()) {
             int count = library.getBooksByAuthor(author).size();
             if(count==0)continue;
-            System.out.println(author.fullName()+" ("+count+" books)");
+            System.out.println(author.getFullName()+" ("+count+" books)");
         }
     }
 
     @Override
     public void printBooksByAuthor(Author author) {
-        System.out.println(author.fullName() + ":");
+        System.out.println(author.getFullName() + ":");
         for (Book book : library.getBooksByAuthor(author))
             printSmallBookInfo(book);
         System.out.println();
     }
     @Override
     public void printBooksByGenre(Genre genre) {
-        System.out.println(genre.name + ":");
+        System.out.println(genre.getName() + ":");
         for (Book book : library.getBooksByGenre(genre))
             printSmallBookInfo(book);
         System.out.println();
