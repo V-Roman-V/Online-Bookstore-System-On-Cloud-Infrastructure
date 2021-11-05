@@ -9,7 +9,7 @@ public class Author implements EntityInterface {
     /**
      * Property of Author
      * 
-     * final means key fuild
+     * final means key field
      */
     private final String first_name;
     private final String last_name;
@@ -17,7 +17,7 @@ public class Author implements EntityInterface {
     private Date birth_date;
 
     /**
-     * Creates a Author
+     * Creates an Author
      */
     public Author(String first_name, String last_name) {
         this.first_name = first_name;
@@ -33,6 +33,8 @@ public class Author implements EntityInterface {
         this.note = note;
         return this;
     }
+
+    //Below are getters which returns private fields of Author class
 
     public String getFirstName() {
         return first_name;

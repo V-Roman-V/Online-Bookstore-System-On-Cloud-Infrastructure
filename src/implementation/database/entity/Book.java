@@ -38,17 +38,7 @@ public class Book implements EntityInterface {
         this.note = null;
     }
 
-    // public void setNote(String note) {
-    //     this.note = note;
-    // }
-
-    // public void setGenre(Genre genre) {
-    //     this.genre = genre;
-    // }
-
-    // public void setPrice(Double price) {
-    //     this.price = price;
-    // }
+    //Below is the implementation of Builder pattern
 
     public Book genre(Genre genre) {
         this.genre = genre;
@@ -68,6 +58,8 @@ public class Book implements EntityInterface {
     public Author getAuthor() {
         return author;
     }
+
+    //Below are getters which returns private fields of Book class
 
     public String getTitle() {
         return title;

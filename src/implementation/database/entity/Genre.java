@@ -8,7 +8,7 @@ public class Genre implements EntityInterface {
     /**
      * Property of Genre
      * 
-     * final means key fuild
+     * final means key field
      */
     private final String name;
     private String description;
@@ -20,10 +20,14 @@ public class Genre implements EntityInterface {
         this.name = name;
     }
 
+    //Below is the implementation of Builder pattern
+
     public Genre description(String description) {
         this.description = description;
         return this;
     }
+
+    //Below are getters which returns private fields of Genre class
 
     public String getName() {
         return name;

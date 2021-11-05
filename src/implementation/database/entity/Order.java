@@ -19,7 +19,7 @@ public class Order implements EntityInterface {
     private final Integer    order_number;
 
     /**
-     * Creates a Order
+     * Creates an Order
      */
     public Order(Book book, Reader reader) {
         order_number = ++ID_coefficient;
@@ -30,10 +30,14 @@ public class Order implements EntityInterface {
         this.reader = reader;
     }
 
+    //Below is the implementation of Builder pattern
+
     public Order date_return(Date date_return) {
         this.date_return = date_return;
         return this;
     }
+
+    //Below are getters which returns private fields of Order class
 
     public Book getBook() {
         return book;

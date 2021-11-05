@@ -39,7 +39,7 @@ public abstract class SiteInterface {
     public abstract Pair<Response, Author> askAuthor();
 
     /**
-     * Requests the user to select a Genre
+     * Requests the user to select a genre
      *
      * @return pair: first=Response{Exit,Incorrect, YES}, second=genre
      */
