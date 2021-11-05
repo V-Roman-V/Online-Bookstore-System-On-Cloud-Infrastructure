@@ -31,8 +31,9 @@ public class Order implements EntityInterface {
         this.reader = reader;
     }
 
-    public void setDateReturn(Date date_return) {
+    public Order date_return(Date date_return) {
         this.date_return = date_return;
+        return this;
     }
 
     public Book getBook() {

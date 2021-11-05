@@ -24,12 +24,14 @@ public class Author implements EntityInterface {
         this.last_name = last_name;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public Author birth_date(Date birth_date) {
+        this.birth_date = birth_date;
+        return this;
     }
 
-    public void setBirthDate(Date birth_date) {
-        this.birth_date = birth_date;
+    public Author note(String note) {
+        this.note = note;
+        return this;
     }
 
     public String getFirstName() {

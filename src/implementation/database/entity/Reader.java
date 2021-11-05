@@ -22,12 +22,14 @@ public class Reader implements EntityInterface {
         this.last_name = last_name;
     }
 
-    public void setAddress(String address) {
+    public Reader address(String address) {
         this.address = address;
+        return this;
     }
 
-    public void setPhoneNumber(String phone_number) {
+    public Reader phone_number(String phone_number) {
         this.phone_number = phone_number;
+        return this;
     }
 
     public String getFirstName() {

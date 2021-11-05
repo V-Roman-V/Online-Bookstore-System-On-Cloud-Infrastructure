@@ -38,16 +38,31 @@ public class Book implements EntityInterface {
         this.note = null;
     }
 
-    public void setNote(String note) {
-        this.note = note;
-    }
+    // public void setNote(String note) {
+    //     this.note = note;
+    // }
 
-    public void setGenre(Genre genre) {
+    // public void setGenre(Genre genre) {
+    //     this.genre = genre;
+    // }
+
+    // public void setPrice(Double price) {
+    //     this.price = price;
+    // }
+
+    public Book genre(Genre genre) {
         this.genre = genre;
+        return this;
     }
 
-    public void setPrice(Double price) {
+    public Book note(String note) {
+        this.note = note;
+        return this;
+    }
+
+    public Book price(Double price) {
         this.price = price;
+        return this;
     }
 
     public Author getAuthor() {

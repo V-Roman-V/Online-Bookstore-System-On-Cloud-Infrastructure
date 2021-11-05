@@ -20,8 +20,9 @@ public class Genre implements EntityInterface {
         this.name = name;
     }
 
-    public void setDiscription(String discription) {
+    public Genre discription(String discription) {
         this.discription = discription;
+        return this;
     }
 
     public String getName() {
