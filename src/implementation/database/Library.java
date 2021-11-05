@@ -203,8 +203,8 @@ public final class Library implements DataBaseInterface {
 
     @Override
     public void reqReserveBook(Book book, String first_name, String last_name) {
-        Reader reader = new Reader(first_name, last_name);
-        reader_table.put(reader.getKey(), reader);// TODO
+        Reader reader = ReaderForm.getInstance(first_name, last_name);
+        reader_table.put(reader.getKey(), reader);
         Order order = new Order(book, reader);
         current_order_table.put(order.getKey(), order);
     }
