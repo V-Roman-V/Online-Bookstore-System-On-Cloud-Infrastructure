@@ -24,7 +24,7 @@ public class User implements UserInterface {
                 site.returnABook();
                 continue;
             }
-            if (choose == Site.SEE_BOOKS) { // Implementation.database.object.Book previews
+            if (choose == Site.SEE_BOOKS) { // Book previews
                 Genre gen = null;
                 while (true) {
                     clear();
@@ -49,7 +49,7 @@ public class User implements UserInterface {
                             break;
                         if (bk == Site.INCORRECT)
                             continue;
-                        if (bk == Site.YES) {// Implementation.database.object.Book reservation
+                        if (bk == Site.YES) {// Book reservation
                             clear();
                             site.bookABook(ID);
                         }

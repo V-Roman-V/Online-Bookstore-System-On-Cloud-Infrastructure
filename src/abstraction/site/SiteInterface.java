@@ -47,7 +47,7 @@ public interface SiteInterface {
     /**
      * Print short information about the book
      *
-     * @param book Implementation.database.object.Book to print
+     * @param book Book to print
      */
     void printSmallBookInfo(Book book);
     /**
