@@ -22,7 +22,7 @@ public final class Library implements DataBaseInterface {
     static HashMap<String, Reader> reader_table;
     static HashMap<String, Genre> genre_table;
     static HashMap<String, Order> current_order_table;
-    static HashMap<String, Order> archived_order_table;
+    static HashMap<String, ReadOnlyOrder> archived_order_table;
 
     /** Creates a library */
     private Library() {
@@ -47,49 +47,49 @@ public final class Library implements DataBaseInterface {
     }
 
     @Override
-    public ArrayList<Book> getBooksByAuthor(Author author) {
+    public ArrayList<ReadOnlyBook> getBooksByAuthor(ReadOnlyAuthor author) {
         return new ArrayList<>(book_table.values().stream().filter(book -> book.getAuthor() == author).toList());
     }
 
     @Override
-    public ArrayList<Book> getBooksByGenre(Genre genre) {
+    public ArrayList<ReadOnlyBook> getBooksByGenre(ReadOnlyGenre genre) {
         return new ArrayList<>(book_table.values().stream().filter(book -> book.getGenre() == genre).toList());
     }
 
     @Override
-    public ArrayList<Book> getBooksByFirstLetter(Character letter) {
+    public ArrayList<ReadOnlyBook> getBooksByFirstLetter(Character letter) {
         return new ArrayList<>(book_table.values().stream()
                 .filter(book -> book.getTitle().toLowerCase().charAt(0) == letter).toList());
     }
 
     @Override
-    public ArrayList<Genre> getListOfGenres() {
+    public ArrayList<ReadOnlyGenre> getListOfGenres() {
         return new ArrayList<>(genre_table.values());
     }
 
     @Override
-    public ArrayList<Author> getListOfAuthors() {
+    public ArrayList<ReadOnlyAuthor> getListOfAuthors() {
         return new ArrayList<>(author_table.values());
     }
 
     @Override
-    public ArrayList<Book> getListOfBooks() {
+    public ArrayList<ReadOnlyBook> getListOfBooks() {
         return new ArrayList<>(book_table.values());
     }
 
     @Override
-    public Boolean getIsBookAvailable(Book book) {
+    public Boolean getIsBookAvailable(ReadOnlyBook book) {
         return current_order_table.values().stream().anyMatch(order -> order.getBook() == book);
     }
 
     /**
-     * This class is access point for creating, modifying, and deleting a Book.
+     * This class is access point for creating, modifying, and deleting a book.
      * Prevents duplication.
      * 
      * TODO configuring administrator-only access rights
      */
     protected class BookForm {
-        public static Book getInstance(String book_title, Author author) {
+        public static Book getInstance(String book_title, ReadOnlyAuthor author) {
             String _book_key = Book.getKey(book_title, author);
             if (null == book_table.get(_book_key))
                 book_table.put(_book_key, new Book(book_title, author));
@@ -98,18 +98,18 @@ public final class Library implements DataBaseInterface {
         }
 
         public static Book getInstance(String book_title, String first_name, String last_name) {
-            Author _author = Library.AuthorForm.getInstance(first_name, last_name);
+            ReadOnlyAuthor _author = Library.AuthorForm.getInstance(first_name, last_name);
             return Library.BookForm.getInstance(book_title, _author);
         }
 
-        public static void delete(String book_title, Author author) {
+        public static void delete(String book_title, ReadOnlyAuthor author) {
             String _book_key = Book.getKey(book_title, author);
             book_table.remove(_book_key);
         }
     }
 
     /**
-     * This class is access point for creating, modifying, and deleting an Author.
+     * This class is access point for creating, modifying, and deleting an author.
      * Prevents duplication.
      * 
      * TODO configuring administrator-only access rights
@@ -130,7 +130,7 @@ public final class Library implements DataBaseInterface {
     }
 
     /**
-     * This class is access point for creating, modifying, and deleting a Genre.
+     * This class is access point for creating, modifying, and deleting a genre.
      * Prevents duplication.
      * 
      * TODO configuring administrator-only access rights
@@ -151,7 +151,7 @@ public final class Library implements DataBaseInterface {
     }
 
     /**
-     * This class is access point for creating, modifying, and deleting a Reader.
+     * This class is access point for creating, modifying, and deleting a reader.
      * Prevents duplication.
      * 
      * TODO configuring administrator-only access rights
@@ -172,31 +172,38 @@ public final class Library implements DataBaseInterface {
     }
 
     @Override
-    public Book getBookByID(int id) {
-        for (Book book : book_table.values())
+    public ReadOnlyBook getBookByID(int id) {
+        for (ReadOnlyBook book : book_table.values())
             if (book.getID() == id)
                 return book;
         return null;
     }
 
     @Override
-    public Author getAuthorByFullName(String fullname) {
-        for (Author author : author_table.values())
+    public ReadOnlyAuthor getAuthorByFullName(String fullname) {
+        for (ReadOnlyAuthor author : author_table.values())
             if (author.getFullName().equalsIgnoreCase(fullname))
                 return author;
         return null;
     }
 
     @Override
-    public Genre getGenreByName(String name) {
-        for (Genre genre : genre_table.values())
+    public ReadOnlyGenre getGenreByName(String name) {
+        for (ReadOnlyGenre genre : genre_table.values())
             if (genre.getName().equalsIgnoreCase(name))
                 return genre;
         return null;
     }
 
     @Override
-    public Order getCurrentBookOrder(Book book) {
+    public ReadOnlyOrder getCurrentBookOrder(ReadOnlyBook book) {
+        for (ReadOnlyOrder order : current_order_table.values())
+            if (order.getBook() == book)
+                return order;
+        return null;
+    }
+
+    private Order getOrderByBook(ReadOnlyBook book) {
         for (Order order : current_order_table.values())
             if (order.getBook() == book)
                 return order;
@@ -204,16 +211,16 @@ public final class Library implements DataBaseInterface {
     }
 
     @Override
-    public void reqReserveBook(Book book, String first_name, String last_name) {
-        Reader reader = new Reader(first_name, last_name);
-        reader_table.put(reader.getKey(), reader);// TODO
+    public void reqReserveBook(ReadOnlyBook book, String first_name, String last_name) {
+        Reader reader = ReaderForm.getInstance(first_name, last_name);
+        reader_table.put(reader.getKey(), reader);
         Order order = new Order(book, reader);
         current_order_table.put(order.getKey(), order);
     }
 
     @Override
-    public void reqReleaseBook(Book book) {
-        Order order = getCurrentBookOrder(book);
+    public void reqReleaseBook(ReadOnlyBook book) {
+        Order order = getOrderByBook(book);
         if (order == null)
             return;
         current_order_table.remove(order.getKey());

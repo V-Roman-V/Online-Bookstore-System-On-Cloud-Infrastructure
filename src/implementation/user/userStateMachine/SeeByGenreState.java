@@ -2,12 +2,12 @@ package implementation.user.userStateMachine;
 
 import abstraction.user.UserInterface;
 import abstraction.user.UserState;
-import implementation.database.entity.Genre;
+import implementation.database.entity.ReadOnlyGenre;
 
 public class SeeByGenreState extends UserState {
-    public Genre genre;
+    public ReadOnlyGenre genre;
 
-    public SeeByGenreState(UserInterface user, Genre genre){
+    public SeeByGenreState(UserInterface user, ReadOnlyGenre genre){
         super(user);
         state = States.SeeByGenreState;
         this.genre = genre;

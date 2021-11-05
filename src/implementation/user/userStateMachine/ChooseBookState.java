@@ -2,13 +2,13 @@ package implementation.user.userStateMachine;
 
 import abstraction.user.UserInterface;
 import abstraction.user.UserState;
-import implementation.database.entity.Book;
+import implementation.database.entity.ReadOnlyBook;
 
 public class ChooseBookState extends UserState {
     UserState prev;
-    Book book;
+    ReadOnlyBook book;
 
-    public ChooseBookState(UserInterface user, Book book, UserState previous){
+    public ChooseBookState(UserInterface user, ReadOnlyBook book, UserState previous){
         super(user);
         state = States.ChooseBookState;
         this.book = book;

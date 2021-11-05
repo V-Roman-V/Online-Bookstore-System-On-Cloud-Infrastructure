@@ -13,7 +13,7 @@ public interface DataBaseInterface {
      * @param author specific author
      * @return list of books
      */
-    ArrayList<Book> getBooksByAuthor(Author author);
+    ArrayList<ReadOnlyBook> getBooksByAuthor(ReadOnlyAuthor author);
 
     /**
      * Request for list of books by a specific genre
@@ -21,7 +21,7 @@ public interface DataBaseInterface {
      * @param genre specific genre
      * @return list of books
      */
-    ArrayList<Book> getBooksByGenre(Genre genre);
+    ArrayList<ReadOnlyBook> getBooksByGenre(ReadOnlyGenre genre);
 
     /**
      * Request for list of books by first letter
@@ -29,75 +29,75 @@ public interface DataBaseInterface {
      * @param letter specific first letter
      * @return list of books
      */
-    ArrayList<Book> getBooksByFirstLetter(Character letter);
+    ArrayList<ReadOnlyBook> getBooksByFirstLetter(Character letter);
 
     /**
      * Request for list of genres
      *
      * @return list of genres
      */
-    ArrayList<Genre> getListOfGenres();
+    ArrayList<ReadOnlyGenre> getListOfGenres();
 
     /**
      * Request for list of authors
      *
      * @return list of authors
      */
-    ArrayList<Author> getListOfAuthors();
+    ArrayList<ReadOnlyAuthor> getListOfAuthors();
 
     /**
      * Request for list of all books
      *
      * @return list of books
      */
-    ArrayList<Book> getListOfBooks();
+    ArrayList<ReadOnlyBook> getListOfBooks();
 
     /**
      * Request for information about book reservations
      *
      * @return Is the book available
      */
-    Boolean getIsBookAvailable(Book book);
+    Boolean getIsBookAvailable(ReadOnlyBook book);
 
     /**
      * Request for book by ID
      *
      * @return book
      */
-    Book getBookByID(int id);
+    ReadOnlyBook getBookByID(int id);
 
     /**
-     * Request for Author by full name
+     * Request for author by full name
      *
-     * @return Author
+     * @return ReadOnlyAuthor
      */
-    Author getAuthorByFullName(String fullname);
+    ReadOnlyAuthor getAuthorByFullName(String fullname);
 
     /**
-     * Request for Genre by name
+     * Request for genre by name
      *
-     * @return Genre
+     * @return genre
      */
-    Genre getGenreByName(String name);
+    ReadOnlyGenre getGenreByName(String name);
 
     /**
-     * Request for Order of the book
+     * Request for order of the book
      *
      * @return reader
      */
-    Order getCurrentBookOrder(Book book);
+    ReadOnlyOrder getCurrentBookOrder(ReadOnlyBook book);
 
     /**
      * Request for book Reservation
      */
-    void reqReserveBook(Book book, String first_name, String last_name);
+    void reqReserveBook(ReadOnlyBook book, String first_name, String last_name);
 
     /**
      * Request for book releasing
      */
-    void reqReleaseBook(Book book);
+    void reqReleaseBook(ReadOnlyBook book);
 
     // Admin requests
-    // ArrayList<Book> getListOfAvailableBook();
-    // ArrayList<Book> getListOfReservedBook();
+    // ArrayList<ReadOnlyBook> getListOfAvailableBook();
+    // ArrayList<ReadOnlyBook> getListOfReservedBook();
 }
