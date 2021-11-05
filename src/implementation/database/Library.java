@@ -4,6 +4,7 @@ import implementation.database.entity.*;
 
 import abstraction.database.*;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -25,12 +26,12 @@ public final class Library implements DataBaseInterface {
 
     /** Creates a library */
     private Library() {
-        book_table = new HashMap<String, Book>();
-        author_table = new HashMap<String, Author>();
-        reader_table = new HashMap<String, Reader>();
-        genre_table = new HashMap<String, Genre>();
-        current_order_table = new HashMap<String, Order>();
-        archived_order_table = new HashMap<String, Order>();
+        book_table = new HashMap<>();
+        author_table = new HashMap<>();
+        reader_table = new HashMap<>();
+        genre_table = new HashMap<>();
+        current_order_table = new HashMap<>();
+        archived_order_table = new HashMap<>();
     }
 
     /**
@@ -51,6 +52,12 @@ public final class Library implements DataBaseInterface {
     @Override
     public ArrayList<Book> getBooksByGenre(Genre genre) {
         return new ArrayList<>(book_table.values().stream().filter(book -> book.getGenre() == genre).toList());
+    }
+
+    @Override
+    public ArrayList<Book> getBooksByFirstLetter(Character letter) {
+        return new ArrayList<>(book_table.values().stream()
+                .filter(book -> book.getTitle().toLowerCase().charAt(0) == letter).toList());
     }
 
     @Override
@@ -162,4 +169,53 @@ public final class Library implements DataBaseInterface {
         }
     }
 
+    @Override
+    public Book getBookByID(int id) {
+        for (Book book : book_table.values())
+            if (book.getID() == id)
+                return book;
+        return null;
+    }
+
+    @Override
+    public Author getAuthorByFullName(String fullname) {
+        for (Author author : author_table.values())
+            if (author.getFullName().equalsIgnoreCase(fullname))
+                return author;
+        return null;
+    }
+
+    @Override
+    public Genre getGenreByName(String name) {
+        for (Genre genre : genre_table.values())
+            if (genre.getName().equalsIgnoreCase(name))
+                return genre;
+        return null;
+    }
+
+    @Override
+    public Order getCurrentBookOrder(Book book) {
+        for (Order order : current_order_table.values())
+            if (order.getBook() == book)
+                return order;
+        return null;
+    }
+
+    @Override
+    public void reqReserveBook(Book book, String first_name, String last_name) {
+        Reader reader = new Reader(first_name, last_name);
+        reader_table.put(reader.getKey(), reader);// TODO
+        Order order = new Order(book, reader);
+        current_order_table.put(order.getKey(), order);
+    }
+
+    @Override
+    public void reqReleaseBook(Book book) {
+        Order order = getCurrentBookOrder(book);
+        if (order == null)
+            return;
+        current_order_table.remove(order.getKey());
+        order.date_return(new Date(System.currentTimeMillis()));
+        archived_order_table.put(order.getKey(), order);
+    }
 }

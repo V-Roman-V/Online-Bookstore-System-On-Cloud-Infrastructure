@@ -10,8 +10,7 @@ public class Order implements EntityInterface {
     private static int ID_coefficient;
 
     /**
-     * Property of Order
-     * 
+     * Fields of Order
      */
     private final Book       book;
     private final Reader     reader;

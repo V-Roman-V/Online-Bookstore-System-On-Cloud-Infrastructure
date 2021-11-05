@@ -2,7 +2,7 @@ package implementation.database.entity;
 
 import abstraction.database.entity.EntityInterface;
 
-// Genre example: HORROR, DETECTIVE, COMEDY, FICTION, THRILLER, EROTIC, DRAMA, PSYCHOLOGICAL, ROMANCE, ECCHI
+// Genre example: HORROR, DETECTIVE, COMEDY, FICTION, THRILLER, EROTIC, DRAMA, PSYCHOLOGICAL, ROMANCE
 
 public class Genre implements EntityInterface {
     /**
@@ -11,7 +11,7 @@ public class Genre implements EntityInterface {
      * final means key fuild
      */
     private final String name;
-    private String discription;
+    private String description;
 
     /**
      * Creates a Genre
@@ -20,8 +20,8 @@ public class Genre implements EntityInterface {
         this.name = name;
     }
 
-    public Genre discription(String discription) {
-        this.discription = discription;
+    public Genre description(String description) {
+        this.description = description;
         return this;
     }
 
@@ -29,8 +29,8 @@ public class Genre implements EntityInterface {
         return name;
     }
 
-    public String getDiscription() {
-        return discription;
+    public String getdescription() {
+        return description;
     }
 
     @Override
