@@ -90,11 +90,7 @@ public final class Library implements DataBaseInterface {
 
         public static Book getInstance(String book_title, String first_name, String last_name) {
             Author _author = Library.AuthorForm.getInstance(first_name, last_name);
-            String _book_key = Book.getKey(book_title, _author);
-            if (null == book_table.get(_book_key))
-                book_table.put(_book_key, new Book(book_title, _author));
-
-            return book_table.get(_book_key);
+            return Library.BookForm.getInstance(book_title, _author);
         }
 
         public static void delete(String book_title, Author author) {

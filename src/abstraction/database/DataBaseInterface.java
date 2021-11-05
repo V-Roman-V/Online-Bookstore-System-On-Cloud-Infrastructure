@@ -1,10 +1,6 @@
 package abstraction.database;
 
-import implementation.database.entity.Author;
-import implementation.database.entity.Book;
-import implementation.database.entity.Genre;
-import implementation.database.entity.Order;
-import implementation.database.entity.Reader;
+import implementation.database.entity.*;
 
 import java.util.ArrayList;
 
@@ -59,8 +55,4 @@ public interface DataBaseInterface {
     // ArrayList<Book> getListOfAvailableBook();
     // ArrayList<Book> getListOfReservedBook();
     // Requester getCurrentBookRequester();
-
-    public class BookForm {
-    };
-
 }
