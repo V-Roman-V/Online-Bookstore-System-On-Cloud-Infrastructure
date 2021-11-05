@@ -8,6 +8,8 @@ public class Reader extends ReadOnlyReader {
         super(first_name, last_name);
     }
 
+    //Below is the implementation of Builder pattern
+
     public Reader address(String address) {
         this.address = address;
         return this;

@@ -8,6 +8,8 @@ public class Author extends ReadOnlyAuthor {
         super(first_name, last_name);
     }
 
+    //Below is the implementation of Builder pattern
+
     public Author birth_date(Date birth_date) {
         this.birth_date = birth_date;
         return this;

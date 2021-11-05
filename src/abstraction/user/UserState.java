@@ -16,6 +16,7 @@ public abstract class UserState {
 
     protected UserInterface user;
 
+
     public UserState(UserInterface user){
         this.user = user;
     }

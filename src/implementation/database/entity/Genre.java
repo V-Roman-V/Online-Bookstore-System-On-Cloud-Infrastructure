@@ -8,6 +8,8 @@ public class Genre extends ReadOnlyGenre {
         super(name);
     }
 
+    //Below is the implementation of Builder pattern
+
     public Genre description(String description) {
         this.description = description;
         return this;

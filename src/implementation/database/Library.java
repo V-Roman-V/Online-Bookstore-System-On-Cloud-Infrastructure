@@ -16,7 +16,7 @@ public final class Library implements DataBaseInterface {
     /** Singleton object */
     private static Library instance;
 
-    /** Hashmaps which stores a databases */
+    /** Hashmaps which stores databases */
     static HashMap<String, Book> book_table;
     static HashMap<String, Author> author_table;
     static HashMap<String, Reader> reader_table;
@@ -39,8 +39,10 @@ public final class Library implements DataBaseInterface {
      * Library class.
      */
     public static Library getInstance() {
-        if (instance == null)
+        if (instance == null) {
             instance = new Library();
+            fill_up_my_vaults_like_administrator();
+        }
         return instance;
     }
 
@@ -86,7 +88,7 @@ public final class Library implements DataBaseInterface {
      * 
      * TODO configuring administrator-only access rights
      */
-    public class BookForm {
+    protected class BookForm {
         public static Book getInstance(String book_title, ReadOnlyAuthor author) {
             String _book_key = Book.getKey(book_title, author);
             if (null == book_table.get(_book_key))
@@ -112,7 +114,7 @@ public final class Library implements DataBaseInterface {
      * 
      * TODO configuring administrator-only access rights
      */
-    public class AuthorForm {
+    protected class AuthorForm {
         public static Author getInstance(String first_name, String last_name) {
             String _author_key = Author.getKey(first_name, last_name);
             if (null == author_table.get(_author_key))
@@ -133,7 +135,7 @@ public final class Library implements DataBaseInterface {
      * 
      * TODO configuring administrator-only access rights
      */
-    public class GenreForm {
+    protected class GenreForm {
         public static Genre getInstance(String name) {
             String _genre_key = Genre.getKey(name);
             if (null == genre_table.get(_genre_key))
@@ -154,7 +156,7 @@ public final class Library implements DataBaseInterface {
      * 
      * TODO configuring administrator-only access rights
      */
-    public class ReaderForm {
+    protected class ReaderForm {
         public static Reader getInstance(String first_name, String last_name) {
             String _reader_key = Reader.getKey(first_name, last_name);
             if (null == reader_table.get(_reader_key))
@@ -224,5 +226,68 @@ public final class Library implements DataBaseInterface {
         current_order_table.remove(order.getKey());
         order.date_return(new Date(System.currentTimeMillis()));
         archived_order_table.put(order.getKey(), order);
+    }
+
+    private static void fill_up_my_vaults_like_administrator() {
+
+        Genre DETECTIVE = GenreForm.getInstance("Detective").description("like sherlok Pomps");
+        Genre HORROR = GenreForm.getInstance("Horror").description("you will scream");
+        Genre COMEDY = GenreForm.getInstance("Comedy").description("you will ha-ha-ah ygar))! ");
+        Genre FICTION = GenreForm.getInstance("Fiction").description("is about deep space galaxy or far future");
+        Genre THRILLER = GenreForm.getInstance("Thriller").description("pif-pav russian weekdays");
+        Genre EROTIC = GenreForm.getInstance("Erotic").description("Attention, 16+ only!");
+        Genre DRAMA = GenreForm.getInstance("Drama").description("It is not about farcry");
+        Genre PSYCHOLOGICAL = GenreForm.getInstance("Psychological").description("aaaaaa");
+        Genre ROMANCE = GenreForm.getInstance("Romance").description("aaaaaa");
+        Genre ECCHI = GenreForm.getInstance("Ecchi").description("Attention, 18+ only!");
+
+        BookForm.getInstance("Max", "Alexsander", "Pushkin").price(22.2).genre(DETECTIVE);
+        BookForm.getInstance("Nastya","Lenin","Ulianov").genre(HORROR).price(12.22).note("...");
+        BookForm.getInstance("Rust", "Alexsander", "Krug").price(85.4).genre(FICTION);
+        BookForm.getInstance("Bong", "Stephen", "King").price(24.4).genre(THRILLER);
+        BookForm.getInstance("ProbStat", "Sergey", "Gorodetskiy").price(9999.9).genre(EROTIC);
+        BookForm.getInstance("Center", "Norman", "Osborn").price(85.4).genre(HORROR);
+        BookForm.getInstance("My House of Horrors (LN)", "Okamura", "Tadashi").price(85.4).genre(HORROR);
+
+
+        Author author1 = AuthorForm.getInstance("Thinker", "Cristiano");
+        BookForm.getInstance("Ronaldo", author1).price(10.9).genre(COMEDY);
+
+        Author author2 = AuthorForm.getInstance("Nikolay", "Tolstoy");
+        BookForm.getInstance("Mumu", author2).price(120.1).genre(DRAMA);
+        BookForm.getInstance("War and Peace", author2).price(309.8).genre(DRAMA);
+        BookForm.getInstance("Anna Karenina", author2).price(238.0).genre(DRAMA);
+
+        Author author3 = AuthorForm.getInstance("Andjey", "Sapkovskiy");
+        BookForm.getInstance("The Witcher: Last wish", author3).price(873.2).genre(FICTION);
+        BookForm.getInstance("The Witcher: The blood of elves", author3).price(2109.2).genre(FICTION);
+        BookForm.getInstance("The Witcher: Owner of lake", author3).price(479.2).genre(FICTION);
+        BookForm.getInstance("THE Witcher: Baptism of fire", author3).price(396.9).genre(FICTION);
+
+        Author author4 = AuthorForm.getInstance("Natalya", "Nesterova");
+        BookForm.getInstance("Find a cat", author4).price(182.2).genre(ROMANCE);
+        BookForm.getInstance("Polina Sergeevna", author4).price(164.0).genre(ROMANCE);
+        BookForm.getInstance("Make it louder", author4).price(410.0).genre(ROMANCE);
+        BookForm.getInstance("You do not hear me", author4).price(182.4).genre(ROMANCE);
+
+        Author author5 = AuthorForm.getInstance("Ashira", "Haan");
+        BookForm.getInstance("Love without dress-code", author5).price(340.8).genre(EROTIC);
+        BookForm.getInstance("Sex only", author5).price(400.2).genre(EROTIC);
+        BookForm.getInstance("Lover of your husband", author5).price(538.1).genre(EROTIC);
+        BookForm.getInstance("The ninth neighbor", author5).price(380.7).genre(EROTIC);
+
+        BookForm.getInstance("The Beginning After the End", "Kiguasa", "Shougo").price(85.0).genre(FICTION);
+        BookForm.getInstance("Re:Zero - Starting Life in Another World","NAGATSUKI", "Tappei").price(20.9).genre(ROMANCE);
+        BookForm.getInstance("No Game No Life","KAMIYA", "Yuu").price(7.5).genre(ECCHI);
+        BookForm.getInstance("I'm A Spider, So What?","BABA", "Okina").price(61.5).genre(PSYCHOLOGICAL);
+        BookForm.getInstance("Classroom of the Elite","KINUGASA", "Shougo").price(18.9).genre(DETECTIVE);
+        BookForm.getInstance("Jobless Reincarnation: I Will Seriously Try If I Go to Another World","Rifujin", "Magonote").price(37.6).genre(COMEDY);
+        BookForm.getInstance("How to forget C++, for dummies","Rifujin", "Magonote").price(0.1).genre(PSYCHOLOGICAL);
+        BookForm.getInstance("Spice and Wolf","Isuna", "Hasekura").price(56.7).genre(DRAMA);
+        BookForm.getInstance("Danganronpa/Zero","Kazutaka", "Kodaka").price(3.3).genre(DETECTIVE);
+        BookForm.getInstance("Knights of the Forty Islands","Sergey", "Lukyanenko").price(19.9).genre(FICTION);
+        BookForm.getInstance("The Stormlight Archive","Brandon", "Sanderson").price(9.25).genre(FICTION);
+        BookForm.getInstance("Mistborn Trilogy","Brandon", "Sanderson").price(8.66).genre(FICTION);
+        BookForm.getInstance("Violet Evergarden","AKATSUKI", "Kana").price(6.7).genre(ROMANCE);
     }
 }

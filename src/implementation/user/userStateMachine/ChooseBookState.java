@@ -20,12 +20,12 @@ public class ChooseBookState extends UserState {
         switch (response) {
             case INCORRECT -> incorrect();
             case EXIT, NO -> back();
-            case YES -> returnBook();
+            case YES -> bookABook();
         default -> throw new IllegalArgumentException("Unexpected value: " + response);
         }
     }
 
-    private void returnBook(){
+    private void bookABook(){
         clear();
         user.site.bookABook(book);
         user.changeState(new ChooseBookState(user, book, prev));
