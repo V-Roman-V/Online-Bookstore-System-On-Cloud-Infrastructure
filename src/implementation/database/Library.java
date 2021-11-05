@@ -273,39 +273,14 @@ public final class Library implements DataBaseInterface {
         BookForm.getInstance("Re:Zero - Starting Life in Another World","NAGATSUKI", "Tappei").price(20.9).genre(ROMANCE));
         BookForm.getInstance("No Game No Life","KAMIYA", "Yuu").price(7.5).genre(ECCHI);
         BookForm.getInstance("I'm A Spider, So What?","BABA", "Okina").price(61.5).genre(PSYCHOLOGICAL);
-
-
-        // BookList.add(new Book("The Beginning After the End (LN)", Genre.FICTION,
-        // "TurtleMe", 85.0));
-        // BookList.add(new Book("Classroom of the Elite (LN)", Genre.DETECTIVE,
-        // "KINUGASA Shougo", 18.9));
-        // BookList.add(new Book("I'm A Spider, So What? (LN)", Genre.DRAMA, "BABA
-        // Okina", 61.5));
-        // BookList.add(new Book("Jobless Reincarnation: I Will Seriously Try If I Go to
-        // Another World (WN)", Genre.COMEDY,
-        // "Rifujin na Magonote", 37.6));
-        // //
-
-        // BookList.add(new Book("How to forget C++, for dummies", Genre.PSYCHOLOGICAL,
-        // "Real life", -0.01));
-        // BookList.add(new Book("Spice and Wolf", Genre.DRAMA, "Isuna Hasekura",
-        // 56.7));
-        // BookList.add(new Book("Danganronpa/Zero (N)", Genre.DETECTIVE, "Kazutaka
-        // Kodaka", 3.3));
-        // BookList.add(new Book("Another (N)", Genre.HORROR, "Yukito Ayatsuji", 2.2));
-        // //
-        // BookList.add(new Book("Re:Zero - Starting Life in Another World",
-        // Genre.ROMANCE, "NAGATSUKI Tappei", 20.9));
-        // BookList.add(new Book("Knights of the Forty Islands", Genre.FICTION, "Sergey
-        // Lukyanenko", 19.90));
-        // BookList.add(new Book("The Stormlight Archive", Genre.FICTION, "Brandon
-        // Sanderson", 9.45));
-        // BookList.add(new Book("Mistborn Trilogy ", Genre.FICTION, "Brandon
-        // Sanderson", 8.66));
-        // BookList.add(new Book("Violet Evergarden (N)", Genre.ROMANCE, "AKATSUKI
-        // Kana", 6.7));
-        // //
-        // return BookList;
-        // }
+        BookForm.getInstance("Classroom of the Elite","KINUGASA", "Shougo").price(18.9).genre(DETECTIVE);
+        BookForm.getInstance("Jobless Reincarnation: I Will Seriously Try If I Go to Another World","Rifujin", "Magonote").price(37.6).genre(COMEDY);
+        BookForm.getInstance("How to forget C++, for dummies","Rifujin", "Magonote").price(0.1).genre(PSYCHOLOGICAL);
+        BookForm.getInstance("Spice and Wolf","Isuna", "Hasekura").price(56.7).genre(DRAMA);
+        BookForm.getInstance("Danganronpa/Zero","Kazutaka", "Kodaka").price(3.3).genre(DETECTIVE);
+        BookForm.getInstance("Knights of the Forty Islands","Sergey", "Lukyanenko").price(19.9).genre(FICTION);
+        BookForm.getInstance("The Stormlight Archive","Brandon", "Sanderson").price(9.25).genre(FICTION);
+        BookForm.getInstance("Mistborn Trilogy","Brandon", "Sanderson").price(8.66).genre(FICTION);
+        BookForm.getInstance("Violet Evergarden","AKATSUKI", "Kana").price(6.7).genre(ROMANCE);
     }
 }
