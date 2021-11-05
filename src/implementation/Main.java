@@ -1,13 +1,7 @@
 package implementation;
 
-import implementation.database.entity.Book;
-import implementation.database.entity.Genre;
 import implementation.site.Site;
 import implementation.user.User;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Objects;
 
 public class Main {
 
@@ -63,7 +57,7 @@ public class Main {
 
     public static void main(String[] args) {
         Site site = new Site();
-        User user = new User();
-        user.startInteraction(site);
+        User user = new User(site);
+        user.startInteraction();
     }
 }

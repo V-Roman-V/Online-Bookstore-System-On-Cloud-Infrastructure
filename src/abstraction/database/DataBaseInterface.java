@@ -24,6 +24,14 @@ public interface DataBaseInterface {
     ArrayList<Book> getBooksByGenre(Genre genre);
 
     /**
+     * Request for list of books by first letter
+     *
+     * @param letter specific first letter
+     * @return list of books
+     */
+    ArrayList<Book> getBooksByFirstLetter(Character letter);
+
+    /**
      * Request for list of genres
      *
      * @return list of genres
@@ -57,6 +65,20 @@ public interface DataBaseInterface {
      * @return book
      */
     Book getBookByID(int id);
+
+    /**
+     * Request for Author by full name
+     *
+     * @return Author
+     */
+    Author getAuthorByFullName(String fullname);
+
+    /**
+     * Request for Genre by name
+     *
+     * @return Genre
+     */
+    Genre getGenreByName(String name);
 
     /**
      * Request for Order of the book

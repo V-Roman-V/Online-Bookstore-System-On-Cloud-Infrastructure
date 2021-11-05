@@ -1,87 +1,151 @@
 package abstraction.site;
 
+import implementation.database.entity.Author;
 import implementation.database.entity.Book;
 import implementation.database.entity.Genre;
-import implementation.site.Site;
 
-public interface SiteInterface {
-    /**
-     * Constants for user responses
-     */
-    int INCORRECT = -2;
-    int EXIT = -1;
-    int RETURN_BOOK = 0;
-    int SEE_BOOKS = 1;
-    int CHOOSE_GENRE = 2;
-    int YES = 1;
-    int NO = 0;
+public abstract class SiteInterface {
+    /** Constants for user responses */
+    public enum Response {
+        INCORRECT, EXIT, RETURN_BOOK, SEE_BOOKS, ALPHABETIC, GENRE, AUTHOR, YES, NO
+    }
+
 
     /** Prints the welcome text */
-    public void enterSite();
+    public abstract void enterSite();
 
-    /** Prints the goodbye text*/
-    void exitSite();
+    /** Prints the goodbye text */
+    public abstract void exitSite();
 
     /**
      * Asks the user for further action
      *
-     * @return user response {INCORRECT, EXIT, RETURN_BOOK, SEE_BOOKS}
+     * @return user response {RETURN_BOOK, SEE_BOOKS, EXIT, INCORRECT}
      */
-    int startMenu();
+    public abstract Response startMenu();
+
+    /**
+     * Requests the user to select a letter
+     *
+     * @return pair: first=Response{Exit,Incorrect, YES}, second=letter
+     */
+    public abstract Pair<Response, Character> askLetter();
+
+    /**
+     * Requests the user to select an author
+     *
+     * @return pair: first=Response{Exit,Incorrect, YES}, second=author
+     */
+    public abstract Pair<Response, Author> askAuthor();
+
+    /**
+     * Requests the user to select a Genre
+     *
+     * @return pair: first=Response{Exit,Incorrect, YES}, second=genre
+     */
+    public abstract Pair<Response, Genre> askGenre();
+
+    /**
+     * Prints a list of books of one author
+     *
+     * @param author specific author
+     */
+    public abstract void printBooksByAuthor(Author author);
+
+    /**
+     * Prints a list of books of one genre
+     *
+     * @param genre specific author
+     */
+    public abstract void printBooksByGenre(Genre genre);
+
+    /**
+     * Prints a list of books with first Letter
+     *
+     * @param letter specific author
+     */
+    public abstract void printBooksByLetter(Character letter);
 
     /**
      * Asks the user to select books
      *
-     * @return the user's response as a pair( first: genre; second: user response
-     *         {id, INCORRECT, EXIT} )
+     * @return pair: first=Response{Exit,Incorrect, YES}, second=book
      */
-    Site.Pair<Genre, Integer> chooseABook();
+    public abstract Pair<Response, Book> chooseABook();
 
     /**
      * Prints complete information about the book
      *
-     * @param bookID ID of the book to print
+     * @param book book to print
      */
-    void printBookInfo(int bookID);
+    public abstract void printBookInfo(Book book);
 
     /**
      * Print short information about the book
      *
      * @param book Book to print
      */
-    void printSmallBookInfo(Book book);
+    public abstract void printSmallBookInfo(Book book);
     /**
      * Asks the user if he wants to reserve the book
      *
-     * @param bookID ID of selected book
+     * @param book selected book
      * @return user response {NO, YES, EXIT}
      */
-    int askAboutBooking(int bookID);
+    public abstract Response askAboutBooking(Book book);
+
+    /**
+     * Asks the user if he wants to reserve the book
+     *
+     * @return user response {Alphabetic, Genre, Author, Exit, Incorrect}
+     */
+    public abstract Response askSearchType();
 
     /**
      * Provides a form for book reservations
      *
-     * @param bookID ID of selected book
-     * @return was the book reserved
+     * @param book selected book
+     * @return was the book reserved: user response {Yes, No}
      */
-    boolean bookABook(int bookID);
+    public abstract Response bookABook(Book book);
 
     /**
      * Provides a form for book returning
      *
-     * @return was the book returned
+     * @return was the book returned: user response {Yes, No}
      */
-    boolean returnABook();
+    public abstract Response returnABook();
 
     /**
-     * Prints a list of books
-     *
-     * @param gen particular genre to print
+     * Prints a list of books alphabetically
      */
-    void printBookList(Genre gen);
+    public abstract void printAlphabet();
+
+    /**
+     * Prints a list of books by genre
+     */
+    public abstract void printGenres();
+
+    /**
+     * Prints a list of books by author
+     */
+    public abstract void printAuthors();
 
     /**
      * Waiting for the Enter key to be pressed
      */
-    void waitEnter();
+    public abstract void waitEnter();
+
+    /**
+     * A helper class for returning multiple values from a function
+     */
+    public static class Pair<T, T1> {
+        public T first;
+        public T1 second;
+
+        public Pair(T f, T1 s) {
+            first = f;
+            second = s;
+        }
+    }
 }

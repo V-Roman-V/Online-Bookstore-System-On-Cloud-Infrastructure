@@ -7,8 +7,6 @@ import abstraction.database.*;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * A class representing Library which stores books
@@ -28,12 +26,12 @@ public final class Library implements DataBaseInterface{
 
     /** Creates a library */
     private Library() {
-        book_table   = new HashMap<String, Book>();
-        author_table = new HashMap<String, Author>();
-        reader_table = new HashMap<String, Reader>();
-        genre_table  = new HashMap<String, Genre>();
-        current_order_table  = new HashMap<String, Order>();
-        archived_order_table = new HashMap<String, Order>();
+        book_table   = new HashMap<>();
+        author_table = new HashMap<>();
+        reader_table = new HashMap<>();
+        genre_table  = new HashMap<>();
+        current_order_table  = new HashMap<>();
+        archived_order_table = new HashMap<>();
     }
 
     /**
@@ -54,6 +52,11 @@ public final class Library implements DataBaseInterface{
     @Override
     public ArrayList<Book> getBooksByGenre(Genre genre){
         return new ArrayList<>(book_table.values().stream().filter( book -> book.genre == genre).toList());
+    }
+
+    @Override
+    public ArrayList<Book> getBooksByFirstLetter(Character letter) {
+        return new ArrayList<>(book_table.values().stream().filter( book -> book.title.toLowerCase().charAt(0) == letter).toList());
     }
 
     @Override
@@ -85,6 +88,22 @@ public final class Library implements DataBaseInterface{
     }
 
     @Override
+    public Author getAuthorByFullName(String fullname) {
+        for(Author author: author_table.values())
+            if(author.fullName().equalsIgnoreCase(fullname))
+                return author;
+        return null;
+    }
+
+    @Override
+    public Genre getGenreByName(String name) {
+        for(Genre genre: genre_table.values())
+            if(genre.name.equalsIgnoreCase(name))
+                return genre;
+        return null;
+    }
+
+    @Override
     public Order getCurrentBookOrder(Book book) {
         for(Order order: current_order_table.values())
             if(order.book == book)
@@ -94,7 +113,8 @@ public final class Library implements DataBaseInterface{
 
     @Override
     public void reqReserveBook(Book book, String first_name, String last_name) {
-        Reader reader = new Reader(first_name, last_name);//TODO
+        Reader reader = new Reader(first_name, last_name);
+        reader_table.put(reader.getKey(),reader);//TODO
         Order order = new Order(book, reader);
         current_order_table.put(order.getKey(), order);
     }
@@ -102,6 +122,7 @@ public final class Library implements DataBaseInterface{
     @Override
     public void reqReleaseBook(Book book) {
         Order order = getCurrentBookOrder(book);
+        if(order == null)return;
         current_order_table.remove(order.getKey());
         order.date_return = new Date(System.currentTimeMillis());
         archived_order_table.put(order.getKey(), order);
