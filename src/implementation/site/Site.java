@@ -278,6 +278,8 @@ public class Site extends SiteInterface {
 
     /**
      * @return the text printed by the user
+     * 
+     * TODO make it singleton
      */
     private String getInput() {
         return new Scanner(System.in).nextLine();
